@@ -6,7 +6,7 @@
  * @author (30429722 - Daniel)
  * @version (18th / May / 2020)
  */
-public class spaceShuttle
+public class SpaceShuttle
 {
     // attributes
     private String shuttleName;
@@ -19,7 +19,7 @@ public class spaceShuttle
     /**
      * Constructor for objects of class spaceShuttle
      */
-    public spaceShuttle()
+    public SpaceShuttle()
     {
         // initialise attributes
         shuttleName = "enter shuttle name";
@@ -33,7 +33,7 @@ public class spaceShuttle
     /**
      * Constructor for objects of class spaceShuttle
      */
-    public spaceShuttle(String newShuttleName, int newManufacturingYear, int newFuelCapacity, int newPassengerCapacity, int newCargoCapacity, int newTravelSpeed)
+    public SpaceShuttle(String newShuttleName, int newManufacturingYear, int newFuelCapacity, int newPassengerCapacity, int newCargoCapacity, int newTravelSpeed)
     {
         // initialise attributes
         shuttleName = newShuttleName;
