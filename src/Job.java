@@ -1,4 +1,3 @@
-package FIT5136_Implementation;
 /**
  *  The class is to store the information of the Job requirement
  *

@@ -1,5 +1,3 @@
-package FIT5136_Implementation;
-
 /**
  *  The class is for the future maintenance about the CargoForOtherMission
  *

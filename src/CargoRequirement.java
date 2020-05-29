@@ -1,5 +1,3 @@
-package FIT5136_Implementation;
-
 /**
  *  The class is for storing the information of the cargo requirement
  *
