@@ -4,7 +4,7 @@
  * space shuttles.
  *
  * @author (30429722 - Daniel)
- * @version (18th / May / 2020)
+ * @version (02nd / June / 2020)
  */
 public class SpaceShuttle
 {
@@ -15,6 +15,8 @@ public class SpaceShuttle
     private int passengerCapacity;
     private int cargoCapacity;
     private int travelSpeed;
+    private int shuttleOrigin;
+    private int shuttleId;
 
     /**
      * Constructor for objects of class spaceShuttle
@@ -28,12 +30,14 @@ public class SpaceShuttle
         passengerCapacity = 0;
         cargoCapacity = 0;
         travelSpeed = 0;
+        shuttleOrigin = 0;
+        shuttleId = 0;
     }
 
     /**
      * Constructor for objects of class spaceShuttle
      */
-    public SpaceShuttle(String newShuttleName, int newManufacturingYear, int newFuelCapacity, int newPassengerCapacity, int newCargoCapacity, int newTravelSpeed)
+    public SpaceShuttle(String newShuttleName, int newManufacturingYear, int newFuelCapacity, int newPassengerCapacity, int newCargoCapacity, int newTravelSpeed, int newShuttleOrigin, int newShuttleId)
     {
         // initialise attributes
         shuttleName = newShuttleName;
@@ -42,6 +46,8 @@ public class SpaceShuttle
         passengerCapacity = newPassengerCapacity;
         cargoCapacity = newCargoCapacity;
         travelSpeed = newTravelSpeed;
+        shuttleOrigin = newShuttleOrigin;
+        shuttleId = newShuttleId;
     }
     
     /**
@@ -157,4 +163,44 @@ public class SpaceShuttle
     public void setTravelSpeed(int newTravelSpeed){
         travelSpeed = newTravelSpeed;
     }
+
+    /**
+     * Accessor Method to get the shuttle origin
+     *
+     * @return an integer which contains the shuttle origin
+     */
+    public int getShuttleOrigin(){
+        return shuttleOrigin;
+    }
+
+    /**
+     * Mutator Method to set the shuttle origin
+     *
+     * @param newShuttleOrigin integer to define the new
+     *          shuttle origin
+     */
+    public void setShuttleOrigin(int newShuttleOrigin){
+        shuttleOrigin = newShuttleOrigin;
+    }
+
+    /**
+     * Accessor Method to get the shuttle ID
+     *
+     * @return an integer which contains the ID
+     */
+    public int getShuttleId(){
+        return shuttleId;
+    }
+
+    /**
+     * Mutator Method to set the shuttle ID
+     *
+     * @param newShuttleId integer to define the new
+     *          shuttle ID
+     */
+    public void setShuttleId(int newShuttleId){
+        shuttleId = newShuttleId;
+    }
+
+
 }
