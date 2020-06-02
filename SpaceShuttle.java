@@ -45,17 +45,6 @@ public class SpaceShuttle
     }
     
     /**
-     * Method to return the state of the spaceShuttle object
-     * 
-     * @return A single string which contains the spaceShuttle
-     *          information separated by commas
-     */
-    public String displaySpaceShuttle(){
-        String spaceShuttleState = "shuttleName" + ", " + "manufacturingYear" + ", " + "fuelCapacity" + ", " + "passengerCapacity" + ", " + "cargoCapacity" + ", " + "travelSpeed";
-        return spaceShuttleState;
-    }
-    
-    /**
      * Accessor Method to get the name of the shuttle
      * 
      * @return a String which contains the shuttle name
