@@ -1,6 +1,6 @@
 
 /**
- * The spaceShuttle class is used to store infromation the
+ * The SpaceShuttle class is used to store infromation the
  * space shuttles.
  *
  * @author (30429722 - Daniel)
@@ -25,7 +25,7 @@ public class SpaceShuttle
     {
         // initialise attributes
         shuttleName = "enter shuttle name";
-        manufacturingYear = 0000;
+        manufacturingYear = 0;
         fuelCapacity = 0;
         passengerCapacity = 0;
         cargoCapacity = 0;
