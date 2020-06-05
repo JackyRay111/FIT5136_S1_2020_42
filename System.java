@@ -12,5 +12,42 @@ public class System {
     private ArrayList<Criteria> listOfCriteria;
     private ArrayList<Mission> listOfMission;
 
+    public System (){
+        listOfCriteria = new ArrayList<>();
+        listOfMission = new ArrayList<>();
+        listOfSpaceShuttle = new ArrayList<>();
+        listOfUser = new ArrayList<>();
+    }
 
+    public ArrayList<Criteria> getListOfCriteria() {
+        return listOfCriteria;
+    }
+
+    public ArrayList<Mission> getListOfMission() {
+        return listOfMission;
+    }
+
+    public ArrayList<SpaceShuttle> getListOfSpaceShuttle() {
+        return listOfSpaceShuttle;
+    }
+
+    public ArrayList<user> getListOfUser() {
+        return listOfUser;
+    }
+
+    public void setListOfCriteria(ArrayList<Criteria> listOfCriteria) {
+        this.listOfCriteria = listOfCriteria;
+    }
+
+    public void setListOfMission(ArrayList<Mission> listOfMission) {
+        this.listOfMission = listOfMission;
+    }
+
+    public void setListOfSpaceShuttle(ArrayList<SpaceShuttle> listOfSpaceShuttle) {
+        this.listOfSpaceShuttle = listOfSpaceShuttle;
+    }
+
+    public void setListOfUser(ArrayList<user> listOfUser) {
+        this.listOfUser = listOfUser;
+    }
 }

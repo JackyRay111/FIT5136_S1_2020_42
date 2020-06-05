@@ -2,9 +2,16 @@ public class Criteria {
 	private String criminalRecords;
 	private String healthRecords;
 	private String[] qualifications;
-	
-	
-	
+	private int criteriaID; //add a new attribute and mutator and accessor ---Jiancong
+	/*
+	add a default constructor  ---Jiancong
+	 */
+	public Criteria(){
+		criminalRecords = "";
+		healthRecords = "";
+		qualifications = new String[20];
+		criteriaID = 0;
+	}
 	
 	public Criteria(String criminalRecords, String healthRecords, String[] qualifications) {
 		super();
@@ -30,7 +37,14 @@ public class Criteria {
 	public void setQualifications(String[] qualifications) {
 		this.qualifications = qualifications;
 	}
-	
+
+	public int getCriteriaID() {
+		return criteriaID;
+	}
+
+	public void setCriteriaID(int criteriaID) {
+		this.criteriaID = criteriaID;
+	}
 }
 
 }
