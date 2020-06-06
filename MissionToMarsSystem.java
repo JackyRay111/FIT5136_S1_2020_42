@@ -1,7 +1,18 @@
+import javafx.scene.chart.ValueAxis;
+
+import javax.crypto.spec.PSource;
+import javax.sound.midi.Soundbank;
+import javax.swing.*;
+import javax.swing.plaf.IconUIResource;
+import java.sql.SQLOutput;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.lang.System;
+import java.util.SortedMap;
+
 /**
  * The class is the control class of the softwar
  *
@@ -61,10 +72,12 @@ public class MissionToMarsSystem {
     public void startMoudle(){
         Boundary boundary = new Boundary();
         FileIo fileIo = new FileIo();
+        readListOfUser();
+        readListOfMission();
         Validation validation = new Validation();
         int loginChoice = 0, homePageChoice = 0;
-        boolean logInSuccessfully = false;
-        String userName, password, userId = "";
+        boolean isLogOut = false;
+        String userName, password;
 
         //start
         do{
@@ -78,35 +91,92 @@ public class MissionToMarsSystem {
             password = validation.acceptNoBlankStringInput();
 
             if(verifyUser(userName, password)){
-                ArrayList<String[]> temp;
-                temp = fileIo.readLogin();
-                for(String[] userList : temp){
-                    if(userList[USERNAME].equals(userName)){
-                        userId = userList[USERID];
-                        break;
+                User logInUser = new User();
+                for (User user: listOfUser
+                     ) {
+                    if(user.getUserName().equals(userName)){
+                        logInUser = user;
                     }
                 }
-                if(userId.substring(0,1).equals("M")){
-                    boundary.displayHomePageForAdmin(userName);
-                    homePageChoice = validation.acceptValidateChoiceInRange(1,4);
-                    if(homePageChoice != 4){
-                        switch (homePageChoice){
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            default:
-                                break;
-                        }
-                    }else {
-                        continue;
-                    }
-                }else{
-                    boundary.displayHomepageForCoordinator(userName);
-                }
+                if(logInUser.getUserId().substring(0,1).equals("A"))// judge whether the user is Admin or Coordinator
+                {
+                    Administrator admin = new Administrator(logInUser.getUserName(),logInUser.getUserPassword(),logInUser.getUserId());
+                    admin.setListOfMission(listOfMission);
+                    do {
+                        boundary.displayHomePageForAdmin(userName);
+                        homePageChoice = validation.acceptValidateChoiceInRange(1, 4);
+                        if (homePageChoice != 4) {
+                            switch (homePageChoice) {
+                                case 1: // edit mission
+                                    int temp;
+                                    boolean backHome = false;
+                                    do {
+                                        temp = chooseTheEditMission(listOfMission);
+                                        if (temp != -1) {
+                                            Mission mission = admin.modifyMission(temp);
+                                            if (editMission(mission)) {
+                                                admin.replaceMission(mission);
+                                                fileIo.writeMissions(admin.stringInfo());
+                                                continue;
+                                            }
+                                        } else {
+                                            backHome = true;
+                                        }
+                                    }while (!backHome);
 
+                                    break;
+                                case 2: // select shuttle space
+                                    break;
+                                case 3: //edit criteria
+                                    break;
+                                default:
+                                    break;
+                            }
+                        } else {
+                            isLogOut  = true; // logOut
+                        }
+                    }while (!isLogOut);
+                }else if (logInUser.getUserId().substring(0,1).equals("M")){
+                    MissionCoordinator missionCoordinator = new MissionCoordinator(logInUser.getUserName(),logInUser.getUserPassword(),logInUser.getUserId());
+                    missionCoordinator.setListOfMission(readMissionForCoordinator(missionCoordinator.getUserName()));
+                    do{
+                        boundary.displayHomepageForCoordinator(userName);
+                        homePageChoice = validation.acceptValidateChoiceInRange(1,3);
+                        if(homePageChoice !=3 ){
+                            switch (homePageChoice){
+                                case 1: //create mission
+                                    Mission m = new Mission();
+                                    m = createMission();
+                                    fileIo.appendFile(m.stringInfo());
+                                    break;
+                                case 2: //edit mission
+                                    int temp;
+                                    boolean backHome = false;
+                                    do {
+                                        temp = chooseTheEditMission(listOfMission);
+                                        if (temp != -1) {
+                                            Mission mission = missionCoordinator.modifyMission(temp);
+                                            if (editMission(mission)) {
+                                                missionCoordinator.replaceMission(mission);
+                                                fileIo.writeMissions(missionCoordinator.stringInfo());
+                                                continue;
+                                            }
+                                        } else {
+                                            backHome = true;
+                                        }
+                                    }while (!backHome);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }else {
+                            isLogOut  = true;//logOut
+                        }
+                    }while (!isLogOut);
+                }
+                if(isLogOut){
+                    continue;
+                }
             }else{
                 boundary.displayLoginFailed();
                 pressAnyToContinue();
@@ -142,14 +212,16 @@ public class MissionToMarsSystem {
     */
 
     public boolean verifyUser(String userName, String passWord){
-        FileIo file = new FileIo();
-        ArrayList<String[]> user ;
+
         boolean isVerified = false;
 
-        user = file.readLogin();
+        Iterator<User> it = listOfUser.iterator();
 
-        for (String[] temp : user) {
-            if (temp[USERNAME].equals(userName) && temp[PASSWORD].equals(passWord)) {
+        while (it.hasNext()){
+            User user = new User();
+
+            user = it.next();
+            if (user.getUserName().equals(userName) && user.getUserPassword().equals(passWord)) {
                 isVerified = true;
                 break;
             }
@@ -164,52 +236,273 @@ public class MissionToMarsSystem {
         press.nextLine();
         System.out.println('\f');
     }
-    
-    
-    
-    
-    
-    public void Criteria()
-    {
-        readCriteria();
-        editCriteria();
-    }
-    
-    public void readCriteria()
-    {
-        ArrayList<String> option = new ArrayList<String>();
-        option = readFile();
-        System.out.println("1 : " + option.get(0));
-        System.out.println("2 : " + option.get(1));
-        System.out.println("3 : " + option.get(2));
-        System.out.println("4 : " + option.get(3));
-    }
-    
-    public void editCriteria()
-    {
-        System.out.println("Please edit your criteria for mission");
-        Scanner sc = new Scanner(System.in);
-        
-    }
-    
-    /**
-     * Method to read file
-     *
-     * @return return the file's contents stored in the ArrayList<String> option
-     */
-    private ArrayList<String> readFile()
-    {
-        ArrayList<String> option = new ArrayList<String>();
-        try
-        {
-            FileIO readFile = new FileIO("criteria.txt");
-            option = readFile.readFile();
+
+    public void readListOfUser(){
+        ArrayList<String[]> logIn;
+        FileIo  fileIo = new FileIo();
+
+        logIn = fileIo.readLogin();
+
+        for (String[] temp: logIn){
+            User user = new User();
+            user.setUserId(temp[USERID]);
+            user.setUserName(temp[USERNAME]);
+            user.setUserPassword(temp[PASSWORD]);
+            listOfUser.add(user);
         }
-        catch (Exception e) 
-        {
-            System.out.println("It can not find the criteria.txt");
-            System.exit(0);
+    }
+
+    public void readListOfMission(){
+        ArrayList<String []> missionS;
+        FileIo fileIo = new FileIo();
+
+        missionS = fileIo.readMission();
+
+        for (String[] temp: missionS){
+            Mission mission = new Mission();
+            mission.setMissionId(Integer.parseInt(temp[0]));
+            mission.setMissionName(temp[1]);
+            mission.setMissionDescription(temp[2]);
+            mission.setCountryOfOrigin(temp[3]);
+            mission.setCountriesAllowed(temp[4]);
+            mission.setLaunchDate(LocalDate.parse(temp[5], DateTimeFormatter.ofPattern("dd/MM/yyy")));
+            mission.setLocationOfDestination(temp[6]);
+            mission.setDuration(Integer.parseInt(temp[7]));
+            mission.setDetailsAboutCoordinator(temp[8]);
+            mission.setStatusOfTheMission(temp[9]);
+            // set job
+            for (String name : temp[10].split(":") ) {
+                Job job = new Job();
+                job.setJobName(name);
+                mission.getListOfJob().add(job);
+            }
+            for (String descrp: temp[11].split(":")) {
+                Iterator<Job> it = mission.getListOfJob().iterator();
+                while(it.hasNext()){
+                    it.next().setJobDescription(descrp);
+                }
+            }
+            //set cargo
+            for (String required : temp[12].split(":") ) {
+                CargoRequirement cargoRequirement = new CargoRequirement();
+                cargoRequirement.setCargoRequired(required);
+                mission.getListOfCargoRequirement().add(cargoRequirement);
+            }
+            for (String quantities: temp[13].split(":")) {
+                Iterator<CargoRequirement> it = mission.getListOfCargoRequirement().iterator();
+                while(it.hasNext()){
+                    it.next().setCargoQuantitiesRequired(Integer.parseInt(quantities));
+                }
+            }
+            //set employment
+            for (String title : temp[14].split(":") ) {
+                EmploymentRequirement employmentRequirement = new EmploymentRequirement();
+                employmentRequirement.setTitles(title);
+            }
+            for (String num: temp[15].split(":")) {
+                Iterator<EmploymentRequirement> it = mission.getListOfEmploymentRequirement().iterator();
+                while(it.hasNext()){
+                    it.next().setNumberOfEmployees(Integer.parseInt(num));
+                }
+            }
+            listOfMission.add(mission);
         }
-        return option;
+    }
+
+    public Mission createMission(){
+        Validation validation = new Validation();
+        Mission mission = new Mission();
+
+        System.out.println("Please enter the Mission name: ");
+        mission.setMissionName(validation.acceptRequiredLengthString(10,1000));
+
+        System.out.println("Please enter the mission description");
+        mission.setMissionDescription(validation.acceptNoBlankStringInput());
+
+        System.out.println("Please enter the country of origin");
+        mission.setCountryOfOrigin(validation.acceptNoBlankStringInput());
+
+        System.out.println("Please enter the country allowed");
+        mission.setCountriesAllowed(validation.acceptNoBlankStringInput());
+
+        System.out.println("Please enter the launchDate: ");
+        mission.setLaunchDate(LocalDate.parse(validation.acceptNoBlankStringInput(), DateTimeFormatter.ofPattern("dd/MM/yyy")) );
+
+        System.out.println("Please enter the location of the destination: ");
+        mission.setLocationOfDestination(validation.acceptNoBlankStringInput());
+
+        System.out.println("Please enter the duration of the mission:  ");
+        mission.setDuration(validation.acceptValidateChoiceInRange(1,100));
+
+        System.out.println("Please enter the details of the mission coordinator: ");
+        mission.setDetailsAboutCoordinator(validation.acceptNoBlankStringInput());
+
+        System.out.println("Please enter the status of the Mission: ");
+        mission.setStatusOfTheMission(validation.acceptNoBlankStringInput());
+
+        System.out.println("Please enter the ID of the Mission");
+        mission.setMissionId(validation.acceptValidateChoiceInRange(0,10000));
+
+        return mission;
+
+    }
+
+    public int chooseTheEditMission(ArrayList<Mission> listOfMission){
+        Boundary boundary = new Boundary();
+        Validation validation = new Validation();
+        boundary.displayTitleOfMissions(listOfMission);
+        boolean isId = false;
+        int temp = 0;
+
+        System.out.println("Please select the mission that you want to edit: ");
+        System.out.println("Enter -1 to back to home page");
+        ArrayList<Integer> ids = new ArrayList<>();
+        for(Mission mission: listOfMission){
+            ids.add(mission.getMissionId());
+        }
+
+        do{
+            temp = validation.acceptNumericInput();
+            for(Integer integer : ids ){
+                if(temp == -1){
+                    break;
+                }
+                if(temp == integer && temp != 0 ){
+                    isId = true;
+                    System.out.println( temp + "is selected ");
+                    break;
+                }
+            }
+            if(!isId){
+                System.out.println("Please enter the id that list above");
+                temp = 0;
+            }
+        }while(!isId);
+
+        return temp;
+    }
+
+    public ArrayList<Mission> readMissionForCoordinator(String userName){
+        ArrayList<String []> missionS;
+        FileIo fileIo = new FileIo();
+        ArrayList<Mission> missionList = new ArrayList<>();
+
+        missionS = fileIo.readMission();
+
+        for (String[] temp: missionS) {
+            String[] coordi;
+            coordi = temp[8].split(":");
+            if (coordi[0].equals(userName)) {
+                Mission mission = new Mission();
+                mission.setMissionId(Integer.parseInt(temp[0]));
+                mission.setMissionName(temp[1]);
+                mission.setMissionDescription(temp[2]);
+                mission.setCountryOfOrigin(temp[3]);
+                mission.setCountriesAllowed(temp[4]);
+                mission.setLaunchDate(LocalDate.parse(temp[5], DateTimeFormatter.ofPattern("dd/MM/yyy")));
+                mission.setLocationOfDestination(temp[6]);
+                mission.setDuration(Integer.parseInt(temp[7]));
+                mission.setDetailsAboutCoordinator(temp[8]);
+                mission.setStatusOfTheMission(temp[9]);
+                // set job
+                for (String name : temp[10].split(":")) {
+                    Job job = new Job();
+                    job.setJobName(name);
+                    mission.getListOfJob().add(job);
+                }
+                for (String descrp : temp[11].split(":")) {
+                    Iterator<Job> it = mission.getListOfJob().iterator();
+                    while (it.hasNext()) {
+                        it.next().setJobDescription(descrp);
+                    }
+                }
+                //set cargo
+                for (String required : temp[12].split(":")) {
+                    CargoRequirement cargoRequirement = new CargoRequirement();
+                    cargoRequirement.setCargoRequired(required);
+                    mission.getListOfCargoRequirement().add(cargoRequirement);
+                }
+                for (String quantities : temp[13].split(":")) {
+                    Iterator<CargoRequirement> it = mission.getListOfCargoRequirement().iterator();
+                    while (it.hasNext()) {
+                        it.next().setCargoQuantitiesRequired(Integer.parseInt(quantities));
+                    }
+                }
+                //set employment
+                for (String title : temp[14].split(":")) {
+                    EmploymentRequirement employmentRequirement = new EmploymentRequirement();
+                    employmentRequirement.setTitles(title);
+                }
+                for (String num : temp[15].split(":")) {
+                    Iterator<EmploymentRequirement> it = mission.getListOfEmploymentRequirement().iterator();
+                    while (it.hasNext()) {
+                        it.next().setNumberOfEmployees(Integer.parseInt(num));
+                    }
+                }
+                missionList.add(mission);
+            }
+        }
+        return missionList;
+    }
+
+
+    public boolean editMission (Mission mission){
+        Boundary boundary = new Boundary();
+        Validation validation = new Validation();
+        boolean back = false;
+
+        do{
+            boundary.displayMissionInfo(mission);
+            System.out.println("Please enter the attribute that you want to edit");
+            System.out.println("Enter -1 to return to finish editing");
+            int choice = validation.acceptNumericInput();
+            if(choice != -1){
+                switch (choice) {
+                    case 1:
+                        System.out.println("Please enter the Mission name: ");
+                        mission.setMissionName(validation.acceptRequiredLengthString(10, 1000));
+                        break;
+                    case 2:
+                        System.out.println("Please enter the mission description");
+                        mission.setMissionDescription(validation.acceptNoBlankStringInput());
+                        break;
+                    case 3:
+                        System.out.println("Please enter the country of origin");
+                        mission.setCountryOfOrigin(validation.acceptNoBlankStringInput());
+                        break;
+                    case 4:
+                        System.out.println("Please enter the country allowed");
+                        mission.setCountriesAllowed(validation.acceptNoBlankStringInput());
+                        break;
+                    case 5:
+                        System.out.println("Please enter the launchDate: ");
+                        mission.setLaunchDate(LocalDate.parse(validation.acceptNoBlankStringInput(), DateTimeFormatter.ofPattern("dd/MM/yyy")));
+                        break;
+                    case 6:
+                        System.out.println("Please enter the location of the destination: ");
+                        mission.setLocationOfDestination(validation.acceptNoBlankStringInput());
+                        break;
+                    case 7:
+                        System.out.println("Please enter the duration of the mission:  ");
+                        mission.setDuration(validation.acceptValidateChoiceInRange(1, 100));
+                        break;
+                    case 8:
+                        System.out.println("Please enter the details of the mission coordinator: ");
+                        mission.setDetailsAboutCoordinator(validation.acceptNoBlankStringInput());
+                        break;
+                    case 9:
+                        System.out.println("Please enter the status of the Mission: ");
+                        mission.setStatusOfTheMission(validation.acceptNoBlankStringInput());
+                        break;
+                    default:
+                        System.out.println("function did not complete");
+                        break;
+                }
+            }else {
+                back = true;
+            }
+        }while(!back);
+        return back;
     }
 }
+

@@ -10,8 +10,8 @@ import java.util.Iterator;
 public class MissionCoordinator extends User{
     private ArrayList<Mission> listOfMission;
 
-    public MissionCoordinator(){
-        super();
+    public MissionCoordinator(String newUserName, String newUserPassword, String newUserId){
+        super(newUserName, newUserPassword, newUserId);
         listOfMission = new ArrayList<>();
     }
 
@@ -26,15 +26,38 @@ public class MissionCoordinator extends User{
         this method is to select The mission that is need to be modified
      */
     public Mission modifyMission(int num){
-        Iterator it =  listOfMission.iterator();
+        Iterator<Mission> it =  listOfMission.iterator();
         Mission moMission = new Mission();
 
         while (it.hasNext()){
-        Mission temp = (Mission) it.next();
+        Mission temp = it.next();
         if(temp.getMissionId() == num){
             moMission = temp;
         }
         }
         return moMission;
+    }
+
+    public StringBuffer stringInfo(){
+        StringBuffer out = new StringBuffer();
+
+        for(Mission mission: listOfMission){
+            out.append(mission.stringInfo());
+            out.append("\r\n");
+        }
+        return out;
+    }
+
+    public void replaceMission(Mission mission){
+        Iterator<Mission> it = listOfMission.iterator();
+
+        while(it.hasNext()){
+            Mission m = it.next();
+            if(m.getMissionId() == mission.getMissionId()){
+                it.remove();
+                listOfMission.add(mission);
+                break;
+            }
+        }
     }
 }
