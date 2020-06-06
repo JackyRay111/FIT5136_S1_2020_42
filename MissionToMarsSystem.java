@@ -132,4 +132,52 @@ public class MissionToMarsSystem {
         press.nextLine();
         System.out.println('\f');
     }
+    
+    
+    
+    
+    
+    public void Criteria()
+    {
+        readCriteria();
+        editCriteria();
+    }
+    
+    public void readCriteria()
+    {
+        ArrayList<String> option = new ArrayList<String>();
+        option = readFile();
+        System.out.println("1 : " + option.get(0));
+        System.out.println("2 : " + option.get(1));
+        System.out.println("3 : " + option.get(2));
+        System.out.println("4 : " + option.get(3));
+    }
+    
+    public void editCriteria()
+    {
+        System.out.println("Please edit your criteria for mission");
+        Scanner sc = new Scanner(System.in);
+        
+    }
+    
+    /**
+     * Method to read file
+     *
+     * @return return the file's contents stored in the ArrayList<String> option
+     */
+    private ArrayList<String> readFile()
+    {
+        ArrayList<String> option = new ArrayList<String>();
+        try
+        {
+            FileIO readFile = new FileIO("criteria.txt");
+            option = readFile.readFile();
+        }
+        catch (Exception e) 
+        {
+            System.out.println("It can not find the criteria.txt");
+            System.exit(0);
+        }
+        return option;
+    }
 }
