@@ -84,5 +84,18 @@ public class FileIo {
         }
         return option;
     }
+    
+    public void writeFile(String adminName) throws IOException 
+    {
+        PrintWriter outputFile = new PrintWriter(fileName);
+        try 
+        {
+            outputFile.println(adminName + "");
+        }
+        finally 
+        {
+            outputFile.close();
+        }
+    }
 
 }
