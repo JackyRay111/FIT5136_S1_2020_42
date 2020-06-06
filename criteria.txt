@@ -1,0 +1,3 @@
+1, no criminal records, have a criminal record 
+2, no health problems, minor health problems, severe health problems
+3, ME, MDS, BDS, MS, MBA, MIT, BE, MBBS
