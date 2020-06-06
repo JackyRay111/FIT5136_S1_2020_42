@@ -1,3 +1,4 @@
-1, no criminal records, have a criminal record 
-2, no health problems, minor health problems, severe health problems
-3, ME, MDS, BDS, MS, MBA, MIT, BE, MBBS
+7003, no criminal records, no health problems, [ME, MDS, BDS]
+7083, have a criminal record, minor health problems, [MIT, MBBS]
+7088, no criminal records, minor health problems, [ME, MDS]
+8003, no criminal records, no health problems, [ME, MIT]
