@@ -14,6 +14,11 @@ public class MissionToMarsSystem {
     private ArrayList<Criteria> listOfCriteria;
     private ArrayList<Mission> listOfMission;
 
+
+    static final int USERID = 0;
+    static final int USERNAME = 1;
+    static final int PASSWORD = 2;
+
     public MissionToMarsSystem (){
         listOfCriteria = new ArrayList<>();
         listOfMission = new ArrayList<>();
@@ -55,15 +60,16 @@ public class MissionToMarsSystem {
 
     public void startMoudle(){
         Boundary boundary = new Boundary();
+        FileIo fileIo = new FileIo();
         Validation validation = new Validation();
-        int loginChoice = 0;
+        int loginChoice = 0, homePageChoice = 0;
         boolean logInSuccessfully = false;
-        String userName, password;
+        String userName, password, userId = "";
 
         //start
         do{
         boundary.displayLogin();
-        loginChoice = validation.acceptValidateLoginChoice();
+        loginChoice = validation.acceptValidateChoiceInRange(1,2);
         if(loginChoice == 1){
 
             System.out.println("Please enter the Use Name:");
@@ -72,6 +78,34 @@ public class MissionToMarsSystem {
             password = validation.acceptNoBlankStringInput();
 
             if(verifyUser(userName, password)){
+                ArrayList<String[]> temp;
+                temp = fileIo.readLogin();
+                for(String[] userList : temp){
+                    if(userList[USERNAME].equals(userName)){
+                        userId = userList[USERID];
+                        break;
+                    }
+                }
+                if(userId.substring(0,1).equals("M")){
+                    boundary.displayHomePageForAdmin(userName);
+                    homePageChoice = validation.acceptValidateChoiceInRange(1,4);
+                    if(homePageChoice != 4){
+                        switch (homePageChoice){
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                break;
+                        }
+                    }else {
+                        continue;
+                    }
+                }else{
+                    boundary.displayHomepageForCoordinator(userName);
+                }
 
             }else{
                 boundary.displayLoginFailed();
@@ -108,8 +142,6 @@ public class MissionToMarsSystem {
     */
 
     public boolean verifyUser(String userName, String passWord){
-        final int USERNAME = 1;
-        final int PASSWORD = 2;
         FileIo file = new FileIo();
         ArrayList<String[]> user ;
         boolean isVerified = false;
