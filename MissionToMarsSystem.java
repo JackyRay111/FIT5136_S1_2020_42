@@ -55,12 +55,38 @@ public class MissionToMarsSystem {
 
     public void startMoudle(){
         Boundary boundary = new Boundary();
-        int choice = 0;
+        Validation validation = new Validation();
+        int loginChoice = 0;
+        boolean logInSuccessfully = false;
+        String userName, password;
 
         //start
+        do{
+        boundary.displayLogin();
+        loginChoice = validation.acceptValidateLoginChoice();
+        if(loginChoice == 1){
 
+            System.out.println("Please enter the Use Name:");
+            userName = validation.acceptNoBlankStringInput();
+            System.out.println("Please enter the PassWord:");
+            password = validation.acceptNoBlankStringInput();
+
+            if(verifyUser(userName, password)){
+
+            }else{
+                boundary.displayLoginFailed();
+                pressAnyToContinue();
+                loginChoice = 0;
+                continue;
+            }
+        }
+        }while(loginChoice != 2);
+        boundary.displayShutDownSystem();
+        pressAnyToContinue();
+        return;
     }
 
+    /*
     private boolean logIn(){
         Validation validation = new Validation();
         boolean logInSuccessfully = false;
@@ -79,6 +105,7 @@ public class MissionToMarsSystem {
         }
         return logInSuccessfully;
     }
+    */
 
     public boolean verifyUser(String userName, String passWord){
         final int USERNAME = 1;
@@ -96,5 +123,13 @@ public class MissionToMarsSystem {
             }
         }
         return isVerified;
+    }
+
+    private void pressAnyToContinue() {
+        System.out.println();
+        System.out.println("Press enter to continue");
+        Scanner press = new Scanner(System.in);
+        press.nextLine();
+        System.out.println('\f');
     }
 }

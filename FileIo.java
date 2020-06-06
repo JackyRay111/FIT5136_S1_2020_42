@@ -23,7 +23,10 @@ public class FileIo {
                 tem = file.nextLine().trim();
                 content.add(tem.split(","));
             }while (file.hasNextLine());
+
+            reader.close();
         }
+
         catch (FileNotFoundException var6){
             System.out.println("Unable to find the file: multiples.txt");
         } catch (IOException var7) {
