@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @version 29/05/2020
  */
 public class System {
-    private ArrayList<user> listOfUser;
+    private ArrayList<User> listOfUser;
     private ArrayList<SpaceShuttle> listOfSpaceShuttle;
     private ArrayList<Criteria> listOfCriteria;
     private ArrayList<Mission> listOfMission;
@@ -31,7 +31,7 @@ public class System {
         return listOfSpaceShuttle;
     }
 
-    public ArrayList<user> getListOfUser() {
+    public ArrayList<User> getListOfUser() {
         return listOfUser;
     }
 
@@ -47,7 +47,7 @@ public class System {
         this.listOfSpaceShuttle = listOfSpaceShuttle;
     }
 
-    public void setListOfUser(ArrayList<user> listOfUser) {
+    public void setListOfUser(ArrayList<User> listOfUser) {
         this.listOfUser = listOfUser;
     }
 }

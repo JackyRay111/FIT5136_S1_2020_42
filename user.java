@@ -4,7 +4,7 @@
  * @author Jiancong Lei and Daniel
  * @version 05/06/2020
  */
-public class user {
+public class User {
     private String userName;
     private String userPassword;
     private String userId;
@@ -12,7 +12,7 @@ public class user {
     /**
      * Constructor for objects of class User
      */
-    public user(){
+    public User(){
         userId = "";
         userName = "";
         userId = "" ;
@@ -59,7 +59,7 @@ public class user {
     /**
      * Mutator Method to set the user Id
      *
-     * @param newUserId String to define the
+     * @param userId String to define the
      *         user Id
      */
     public void setUserId(String userId) {
@@ -69,7 +69,7 @@ public class user {
     /**
      * Mutator Method to set the user password
      *
-     * @param newUserPassword String to set the user password
+     * @param userPassword String to set the user password
      */
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
@@ -78,7 +78,7 @@ public class user {
     /**
      * Mutator Method to set the username
      *
-     * @param newUserName String to define the new
+     * @param userName String to define the new
      *          username
      */
     public void setUserName(String userName) {
