@@ -6,7 +6,7 @@ public class Validation {
     public Validation(){
 
     }
-
+/*
     public int acceptNumericInput() {
         int temp = 0;
         boolean isValidate = false;
@@ -22,9 +22,11 @@ public class Validation {
         }while(isValidate == false);
 
         return temp;
-    }
+    }*/
 
+    /*
     public int acceptValidateLoginChoice(){
+
         int temp = 0;
         boolean isValidate = false;
 
@@ -33,6 +35,29 @@ public class Validation {
             if (jacky.hasNextInt()) {
                 temp = jacky.nextInt();
                 if(temp == 1 || temp == 2){
+                    isValidate = true;
+                }
+                else {
+                    System.out.println("Please enter the right choice");
+                }
+
+            } else {
+                System.out.println("Error Pleas enter a number, Please enter again:");
+            }
+        }while(isValidate == false);
+
+        return temp;
+    }*/
+
+    public int acceptValidateChoiceInRange(int min, int max){
+        int temp = 0;
+        boolean isValidate = false;
+
+        do {
+            Scanner jacky = new Scanner(System.in);
+            if (jacky.hasNextInt()) {
+                temp = jacky.nextInt();
+                if(min <=temp && temp <= max){
                     isValidate = true;
                 }
                 else {
