@@ -1,9 +1,9 @@
 
 /**
- * The SpaceShuttle class is used to store infromation the
+ * The SpaceShuttle class is used to store infromation of the
  * space shuttles.
  *
- * @author (30429722 - Daniel)
+ * @author  Daniel
  * @version (02nd / June / 2020)
  */
 public class SpaceShuttle

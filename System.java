@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * The class is the control class of the softwar
+ * The class is the control class of the software
  *
  * @author Jiancong Lei
  * @version 29/05/2020
