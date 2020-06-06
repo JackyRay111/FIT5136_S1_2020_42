@@ -7,7 +7,7 @@ import java.util.Iterator;
  * @author Jiancong Lei
  * @version 05/06/2020
  */
-public class MissionCoordinator extends user{
+public class MissionCoordinator extends User{
     private ArrayList<Mission> listOfMission;
 
     public MissionCoordinator(){

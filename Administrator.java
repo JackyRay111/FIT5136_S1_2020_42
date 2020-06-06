@@ -11,7 +11,7 @@ import java.util.zip.CRC32;
  * @author Jiancong Lei
  * @version 05/06/2020
  */
-public class Administrator extends user{
+public class Administrator extends User{
     private ArrayList<SpaceShuttle> listOfSpaceShuttle;
     private ArrayList<Criteria> listOfCriteria;
     private ArrayList<Mission> listOfMission;

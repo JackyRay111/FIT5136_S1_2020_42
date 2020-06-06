@@ -1,53 +1,53 @@
 public class Boundary {
 	public boolean displayLogin()
 	{
-		return;
+		return true;
 	}
-	
+
 	public boolean displayLoginFailed() {
-		return 1
+		return true;
 	}
 	public boolean displayLoginSuccessful() {
-		return
+		return true;
 	}
 	public boolean displayCreateMission() {
-		return
+		return true;
 	}
 	public boolean displayMissionInfo() {
-		return
+		return true;
 	}
 	public boolean displayMissionCoordin() {
-		return
+		return true;
 	}
 	public boolean displaySelectSpaceShuttle() {
-		return
+		return true;
 	}
 	public boolean displayShuttleInfo() {
-		return
+		return true;
 	}
 	public boolean displayShuttleConfirmed() {
-		return
+		return true;
 	}
 	public boolean displayCreateCriteria() {
-		return
+		return true;
 	}
 	public boolean displayCriteriaSelection() {
-		return
+		return true;
 	}
 	public boolean displayConfirmCriteria() {
-		return
+		return true;
 	}
 	public boolean displayCandidateList() {
-		return
+		return true;
 	}
 	public boolean displayCandidatesInfo() {
-		return
+		return true;
 	}
 	public boolean displayCandidateReply() {
-		return
+		return true;
 	}
 	public boolean displayCandidateReplacement() {
-		return
+		return true;
 	}
 
 }
