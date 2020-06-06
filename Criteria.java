@@ -59,4 +59,3 @@ public class Criteria {
         this.qualifications = qualifications;
     }
 
-}
