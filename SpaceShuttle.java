@@ -202,5 +202,14 @@ public class SpaceShuttle
         shuttleId = newShuttleId;
     }
 
-
+    public void displayShuttleInfo() {
+        System.out.println("* Shuttle ID: " + shuttle.getShuttleId());
+        System.out.println("1.Shuttle Name: " + shuttle.getShuttleName());
+        System.out.println("2.Country Of Origin: " + shuttle.getShuttleOrigin());
+        System.out.println("3.Manufacturing Year: " + shuttle.getManufacturingYear());
+        System.out.println("4.Passenger Capacity: " + shuttle.getPassengerCapacity());
+        System.out.println("5.Fuel Capacity: " + shuttle.getFuelCapacity());
+        System.out.println("6.Travel Speed: " + shuttle.getTravelSpeed());
+        System.out.println("7.Cargo Capacity: " + shuttle.getCargoCapacity())
+    }
 }

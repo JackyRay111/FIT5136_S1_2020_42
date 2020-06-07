@@ -80,16 +80,27 @@ public class Boundary {
 		}
 	}
 	public boolean displayMissionCoordin() {
+
 		return true;
 	}
-	public boolean displaySelectSpaceShuttle() {
-		return true;
+	public void displaySelectSpaceShuttle(ArrayList<SpaceShuttle> shuttleArrayList) {
+		for(SpaceShuttle shuttle: shuttleArrayList){
+			System.out.println("********************************************************************************");
+			System.out.println("* Shuttle ID: " + shuttle.getShuttleId() + "\t\t Shuttle Name: " + shuttle.getShuttleName());
+			System.out.println("1.Passenger Capacity: " + shuttle.getPassengerCapacity());
+			System.out.println("2.Fuel Capacity: " + shuttle.getFuelCapacity());
+			System.out.println("3.Travel Speed: " + shuttle.getTravelSpeed());
+			System.out.println("4.Cargo Capacity: " + shuttle.getCargoCapacity());
+			System.out.println("********************************************************************************");
+
+		}
 	}
-	public boolean displayShuttleInfo() {
-		return true;
+	public void displayShuttleInfo(SpaceShuttle shuttle) {
+		shuttle.displayShuttleInfo();
 	}
-	public boolean displayShuttleConfirmed() {
-		return true;
+	public void displayShuttleConfirmed(SpaceShuttle shuttle) {
+		System.out.println("* Done! Shuttle Selected ");
+		System.out.println("* Shuttle ID: " + shuttle.getShuttleId() + "\t\t Shuttle Name: " + shuttle.getShuttleName());
 	}
 	public boolean displayCreateCriteria() {
 		return true;
