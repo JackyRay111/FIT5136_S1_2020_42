@@ -1,4 +1,4 @@
-7083,build_Mars,Morbi sit amet massa,Australia,Australia,2024-09-30,Mars East,2,jacky: M111@gg.com,Planning,[Job@61e4705b, Job@50134894],[CargoRequirement@2957fcb0, CargoRequirement@1376c05c],[]
-7088,roads build,Morbi sit amet massa,Australia,Australia,2023-09-30,Mars East,2,daniel: M112@gg.com,Planning,[Job@2a33fae0, Job@707f7052],[CargoRequirement@11028347, CargoRequirement@14899482],[]
-8003,IT infrastructure,Morbi sit amet massa,Australia,Australia,2024-04-30,Mars East,2,daniel: M112@gg.com,Planning,[Job@21588809, Job@2aae9190],[CargoRequirement@2f333739, CargoRequirement@77468bd9],[]
-7003,Vist_Mars,Morbi sit amet massa,Australia,Australia,2020-09-30,Mars East,2,jacky: M111@gg.com,Planning,[Job@12bb4df8, Job@4cc77c2e],[CargoRequirement@7a7b0070, CargoRequirement@39a054a5],[]
+7083,build_Mars,Morbi sit amet massa,Australia,Australia,2024-09-30,Mars East,2,jacky: M111@gg.com,Planning,printer:builder,print the building:build the building,for the mission:for the journey,200:150,senior printer:senior builder,30:50
+7088,roads build,Morbi sit amet massa,Australia,Australia,2023-09-30,Mars East,2,daniel: M112@gg.com,Planning,printer:builder,print the building:build the building,for the mission:for the journey,200:150,senior printer:senior builder,30:50
+8003,IT infrastructure,Morbi sit amet massa,Australia,Australia,2024-04-30,Mars East,2,daniel: M112@gg.com,Planning,printer:builder,print the building:build the building,for the mission:for the journey,200:150,senior printer:senior builder,30:50
+7003,Vist_Mars,Morbi sit amet massa,Australia,Australia,2020-09-30,Mars East,2,jacky: M111@gg.com,Planning,printer:builder,print the building:build the building,for the mission:for the journey,200:150,senior printer:senior builder,30:50
