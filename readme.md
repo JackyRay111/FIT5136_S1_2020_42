@@ -20,7 +20,7 @@ This application is created with:
 After the handover, ISCC will implement its own database. Meanwhile,
 you can store data into any of the following files:
 * CSV file
-* Text file
+* Text file (for example, login.txt)
 * Excel file
 
 	
