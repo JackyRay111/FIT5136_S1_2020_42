@@ -202,6 +202,9 @@ public class SpaceShuttle
         shuttleId = newShuttleId;
     }
 
+    /**
+     * Display Method to show the shuttle information
+     */
     public void displayShuttleInfo() {
         System.out.println("* Shuttle ID: " + shuttle.getShuttleId());
         System.out.println("1.Shuttle Name: " + shuttle.getShuttleName());
