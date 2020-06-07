@@ -6,8 +6,22 @@ Initiate Second Chance Cooperation (ISCC) mission
 to mars project.
 	
 ## Technologies
-Project is created with:
-* Java (Core Java) - Programming Language
+This application is created with:
+
+##### Programming Language
+* Java (Core Java) 
+
+##### IDE requirements - Java
+* IntelliJ (recommended)
+* NetBeans
+* Eclipse
+
+##### Database
+After the handover, ISCC will implement its own database. Meanwhile,
+you can store data into any of the following files:
+* CSV file
+* Text file
+* Excel file
 
 	
 ## Setup
