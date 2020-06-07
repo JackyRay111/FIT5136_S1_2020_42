@@ -34,3 +34,9 @@ To run this project:
 
 
 ## Screenshots
+* Extracted Shuttle List and information displayed.
+![Screenshot](Screenshot610.png) 
+
+* Full information of the selected shuttle displayed 
+with a confirmation message. 
+![screenshot2](Screenshot611.png)
