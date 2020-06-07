@@ -8,6 +8,7 @@ import java.lang.System;
 public class FileIo {
     private static final String LOGIN = "login.txt";
     private static final String MISSION = "mission.txt";
+    private static final String CRITERIA = "criteria.txt";
 
     public FileIo(){
 
@@ -57,39 +58,41 @@ public class FileIo {
         return content;
     }
 
-    public ArrayList<String> readFile() throws IOException
+    public ArrayList<String> readCriteriaFile() throws IOException  
     {
-        ArrayList<String> cri= new ArrayList<String>();
-        FileReader inputFile = new FileReader("criteria.txt");
-        try
-        {
-            Scanner parser = new Scanner(inputFile);
-            String option1 = parser.nextLine(); // criminal records
-            String option2 = parser.nextLine(); // health records
-            String option3 = parser.nextLine(); // qualifications
-            cri.add(option1);
-            cri.add(option2);
-            cri.add(option3);
-        }
-        finally
-        {
-            inputFile.close();
-        }
-        return cri;
-    }
-    
-    public void writeFile(String adminName) throws IOException 
-    {
-        PrintWriter outputFile = new PrintWriter(fileName);
+        ArrayList<String> option = new ArrayList<String>();
+        FileReader inputFile = new FileReader(CRITERIA);
         try 
         {
-            outputFile.println(adminName + "");
+            Scanner parser = new Scanner(inputFile);
+            String option1 = parser.nextLine(); // 1
+            String option2 = parser.nextLine(); // 2
+            String option3 = parser.nextLine(); // 3
+            String option4 = parser.nextLine(); // 4
+            option.add(option1);
+            option.add(option2);
+            option.add(option3);
+            option.add(option4);
         }
         finally 
         {
-            outputFile.close();
+            inputFile.close();
         }
+        return option;
     }
+    
+//     public void writeFile(String adminName) throws IOException 
+//     {
+//         PrintWriter outputFile = new PrintWriter(fileName);
+//         try 
+//         {
+//             outputFile.println(adminName + "");
+//         }
+//         finally 
+//         {
+//             outputFile.close();
+//         }
+//     }
 
     public void appendFile(String contents) {
         try {
