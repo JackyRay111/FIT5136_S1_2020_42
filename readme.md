@@ -1,9 +1,9 @@
 # EmployFast
 
 ## General info
-EmployFast is a text-based application which selects 
-candidates for the Initiate Second Chance Cooperation 
-(ISCC) mission to mars project.
+EmployFast is a text-based application for the 
+Initiate Second Chance Cooperation (ISCC) mission 
+to mars project.
 	
 ## Technologies
 Project is created with:
@@ -12,7 +12,6 @@ Project is created with:
 	
 ## Setup
 To run this project:
-
 
 1. install it locally by placing the project folder 
    in the directory of your choice.
