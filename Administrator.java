@@ -16,8 +16,8 @@ public class Administrator extends User{
     private ArrayList<Criteria> listOfCriteria;
     private ArrayList<Mission> listOfMission;
 
-    public Administrator(){
-        super();
+    public Administrator(String newUserName, String newUserPassword, String newUserId){
+        super(newUserName, newUserPassword, newUserId);
         listOfCriteria = new ArrayList<>();
         listOfMission = new ArrayList<>();
         listOfSpaceShuttle = new ArrayList<>();
@@ -83,5 +83,28 @@ public class Administrator extends User{
             }
         }
         return moCriteria;
+    }
+
+    public void replaceMission(Mission mission){
+        Iterator<Mission> it = listOfMission.iterator();
+
+        while(it.hasNext()){
+            Mission m = it.next();
+            if(m.getMissionId() == mission.getMissionId()){
+                it.remove();
+                listOfMission.add(mission);
+                break;
+            }
+        }
+    }
+
+    public StringBuffer stringInfo(){
+        StringBuffer out = new StringBuffer();
+
+        for(Mission mission: listOfMission){
+            out.append(mission.stringInfo());
+            out.append("\r\n");
+        }
+        return out;
     }
 }

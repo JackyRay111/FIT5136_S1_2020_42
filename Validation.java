@@ -6,7 +6,7 @@ public class Validation {
     public Validation(){
 
     }
-/*
+
     public int acceptNumericInput() {
         int temp = 0;
         boolean isValidate = false;
@@ -22,7 +22,7 @@ public class Validation {
         }while(isValidate == false);
 
         return temp;
-    }*/
+    }
 
     /*
     public int acceptValidateLoginChoice(){
@@ -94,5 +94,26 @@ public class Validation {
         return temp;
     }
 
+    public String acceptRequiredLengthString(int min, int max){
+        String temp = "";
+        boolean isValidate = false;
+
+        do{
+            Scanner jacky = new Scanner(System.in);
+            if(jacky.hasNextLine()){
+                temp = jacky.nextLine().trim();
+                if(temp.length() > 0 && temp.length()>= min && temp.length() <= max){
+                    isValidate = true;
+                }
+                else {
+                    System.out.println("Please do not enter empty content or less than " + min + " number character,Please enter again: ");
+                }
+            }
+            else {
+                System.out.println("Please enter required format, Please enter again: ");
+            }
+        }while(isValidate == false);
+        return temp;
+    }
 
 }

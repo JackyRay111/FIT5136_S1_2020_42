@@ -1,4 +1,6 @@
-import java.time.LocalDateTime;
+import javax.swing.plaf.PanelUI;
+import javax.swing.plaf.SplitPaneUI;
+import java.time.LocalDate;
 import java.util.ArrayList;
 /**
  *  The class is to store the information of the Mission
@@ -12,7 +14,7 @@ public class Mission {
     private String missionDescription;
     private String countryOfOrigin;
     private String countriesAllowed;
-    private LocalDateTime launchDate;
+    private LocalDate launchDate;
     private String locationOfDestination;
     private int duration;
     private String detailsAboutCoordinator;
@@ -30,7 +32,7 @@ public class Mission {
         missionDescription = "";
         countryOfOrigin ="";
         countriesAllowed = "";
-        launchDate = LocalDateTime.now();
+        launchDate = LocalDate.now();
         duration = 0;
         detailsAboutCoordinator = "";
         statusOfTheMission = "";
@@ -107,7 +109,7 @@ public class Mission {
      *
      * @return A LocalDateTime that contain the time and date of the launch
      */
-    public LocalDateTime getLaunchDate(){
+    public LocalDate getLaunchDate(){
         return launchDate;
     }
 
@@ -206,7 +208,7 @@ public class Mission {
      *
      * @param launchDate a localdatatime which will store the launch time of the mission
      */
-    public void setLaunchDate(LocalDateTime launchDate){
+    public void setLaunchDate(LocalDate launchDate){
         this.launchDate = launchDate;
     }
 
@@ -274,6 +276,38 @@ public class Mission {
      */
     public boolean addEmploymentRequirement(EmploymentRequirement employmentRequirement){
         return this.listOfEmploymentRequirement.add(employmentRequirement);
+    }
+
+    public void showMissionInfo(){
+        System.out.println("Mission ID: " + missionId);
+        System.out.println("1.Mission Name: " + missionName);
+        System.out.println("2.Country Of Origin: " + countryOfOrigin );
+        System.out.println("3.Country Allowed: " + countriesAllowed);
+        System.out.println("4. LaunchDate: " + launchDate.toString());
+        System.out.println("5. location of destination: " + locationOfDestination);
+        System.out.println("6. duration: " + duration);
+        System.out.println("7. details about coordinator: " + detailsAboutCoordinator);
+        System.out.println("8. status of the mission: " + statusOfTheMission);
+        System.out.println("9. The job: " );
+        for (Job job: listOfJob) {
+            System.out.println("Job name: " + job.getJobName());
+            System.out.println("Job description: " + job.getJobDescription());
+        }
+        System.out.println("10. The cargo requirement");
+        for(CargoRequirement cargoRequirement: listOfCargoRequirement){
+            System.out.println("Required: " + cargoRequirement.getCargoRequired());
+            System.out.println("quantities: " + cargoRequirement.getCargoQuantitiesRequired());
+        }
+        System.out.println("11. The Employment requiremnt");
+        for(EmploymentRequirement employmentRequirement: listOfEmploymentRequirement){
+            System.out.println("Title: " + employmentRequirement.getTitles());
+            System.out.println("number: " + employmentRequirement.getNumberOfEmployees());
+        }
+    }
+
+    public String stringInfo(){
+        String info = missionId + "," + missionName + "," + missionDescription +"," + countryOfOrigin + "," + countriesAllowed + "," + launchDate.toString() + "," + locationOfDestination + "," + duration + "," + detailsAboutCoordinator + "," + statusOfTheMission + "," + listOfJob.toString() + "," + listOfCargoRequirement.toString() + "," + listOfEmploymentRequirement;
+        return info;
     }
 
 }
