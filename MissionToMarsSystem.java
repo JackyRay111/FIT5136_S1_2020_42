@@ -159,6 +159,8 @@ public class MissionToMarsSystem {
 
                                     break;
                                 case 3: //edit criteria
+                                    readCriteria();
+                                    
                                     break;
                                 default:
                                     break;
@@ -560,6 +562,32 @@ public class MissionToMarsSystem {
         }
 
 
+    }
+    
+    public void readCriteria()
+    {
+        ArrayList<String> option = new ArrayList<String>();
+        option = readFile();
+        System.out.println("1 : " + option.get(0));
+        System.out.println("2 : " + option.get(1));
+        System.out.println("3 : " + option.get(2));
+        System.out.println("4 : " + option.get(3));
+    }
+    
+    private ArrayList<String> readFile()
+    {
+        ArrayList<String> option = new ArrayList<String>();
+        try
+        {
+            FileIO readFile = new FileIO("criteria.txt");
+            option = readFile.readFile();
+        }
+        catch (Exception e) 
+        {
+            System.out.println("It can not find the criteria.txt");
+            System.exit(0);
+        }
+        return option;
     }
 
 }
