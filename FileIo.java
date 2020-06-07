@@ -8,7 +8,6 @@ import java.lang.System;
 public class FileIo {
     private static final String LOGIN = "login.txt";
     private static final String MISSION = "mission.txt";
-    private static final String CRITERIA = "criteria.txt";
 
     public FileIo(){
 
@@ -29,9 +28,9 @@ public class FileIo {
         }
 
         catch (FileNotFoundException var6){
-            System.out.println("Unable to find the file: multiples.txt");
+            System.out.println("Unable to find the file: login.txt");
         } catch (IOException var7) {
-            System.out.println("Error encountered reading the file: multiples.txt");
+            System.out.println("Error encountered reading the file: login.txt");
         }
         return content;
     }
@@ -51,52 +50,50 @@ public class FileIo {
         }
 
         catch (FileNotFoundException var6){
-            System.out.println("Unable to find the file: multiples.txt");
+            System.out.println("Unable to find the file: mission.txt");
         } catch (IOException var7) {
-            System.out.println("Error encountered reading the file: multiples.txt");
+            System.out.println("Error encountered reading the file: mission.txt");
         }
         return content;
     }
 
-    public ArrayList<String> readCriteriaFile() throws IOException  
+    public ArrayList<String> readFile() throws IOException
     {
-        ArrayList<String> option = new ArrayList<String>();
-        FileReader inputFile = new FileReader(CRITERIA);
-        try 
+        ArrayList<String> cri= new ArrayList<String>();
+        FileReader inputFile = new FileReader("criteria.txt");
+        try
         {
             Scanner parser = new Scanner(inputFile);
-            String option1 = parser.nextLine(); // 1
-            String option2 = parser.nextLine(); // 2
-            String option3 = parser.nextLine(); // 3
-            String option4 = parser.nextLine(); // 4
-            option.add(option1);
-            option.add(option2);
-            option.add(option3);
-            option.add(option4);
+            String option1 = parser.nextLine(); // criminal records
+            String option2 = parser.nextLine(); // health records
+            String option3 = parser.nextLine(); // qualifications
+            cri.add(option1);
+            cri.add(option2);
+            cri.add(option3);
         }
-        finally 
+        finally
         {
             inputFile.close();
         }
-        return option;
+        return cri;
     }
     
-//     public void writeFile(String adminName) throws IOException 
-//     {
-//         PrintWriter outputFile = new PrintWriter(fileName);
-//         try 
-//         {
-//             outputFile.println(adminName + "");
-//         }
-//         finally 
-//         {
-//             outputFile.close();
-//         }
-//     }
+   /* public void writeFile(String adminName) throws IOException
+    {
+        PrintWriter outputFile = new PrintWriter(fileName);
+        try 
+        {
+            outputFile.println(adminName + "");
+        }
+        finally 
+        {
+            outputFile.close();
+        }
+    }*/
 
     public void appendFile(String contents) {
         try {
-            FileReader reader = new FileReader("outcome.txt");
+            FileReader reader = new FileReader(MISSION);
             Scanner file = new Scanner(reader);
             StringBuffer stringBuffer = new StringBuffer();
 
@@ -106,7 +103,7 @@ public class FileIo {
             }
 
             reader.close();
-            PrintWriter write = new PrintWriter("outcome.txt");
+            PrintWriter write = new PrintWriter(MISSION);
             String var10001 = stringBuffer.toString();
             write.write(var10001 + contents);
             write.close();
@@ -130,29 +127,5 @@ public class FileIo {
             System.out.println("Error encountered writing or reading to the file: outcome.txt");
         }
 
-    }
-
-    public ArrayList<String[]> readShuttleFile()
-    {
-        String inputFile = "./shuttle.txt";
-        ArrayList<String []> content = new ArrayList<>();
-        try{
-            FileReader reader = new FileReader(inputFile);
-            Scanner file = new Scanner(reader);
-            String tem;
-            do{
-                tem = file.nextLine().trim();
-                content.add(tem.split(","));
-            }while (file.hasNextLine());
-
-            reader.close();
-        }
-
-        catch (FileNotFoundException var6){
-            System.out.println("Unable to find the file: shuttle.txt");
-        } catch (IOException var7) {
-            System.out.println("Error encountered reading the file: shuttle.txt");
-        }
-        return content;
     }
 }

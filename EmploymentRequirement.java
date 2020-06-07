@@ -9,6 +9,7 @@ public class EmploymentRequirement {
     private String titles;
     private int numberOfEmployees;
 
+
     /**
      * The constructor for objects of the EmploymentRequirement Class
      */
@@ -17,6 +18,10 @@ public class EmploymentRequirement {
         numberOfEmployees = 0;
     }
 
+    public EmploymentRequirement(String titles, int numberOfEmployees){
+        this.titles = titles;
+        this.numberOfEmployees = numberOfEmployees;
+    }
     /**
      * The Accessor method to get the titles of the Employment
      *

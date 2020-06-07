@@ -32,6 +32,7 @@ public class Mission {
         missionDescription = "";
         countryOfOrigin ="";
         countriesAllowed = "";
+        locationOfDestination = "";
         launchDate = LocalDate.now();
         duration = 0;
         detailsAboutCoordinator = "";
@@ -212,6 +213,17 @@ public class Mission {
         this.launchDate = launchDate;
     }
 
+    public void setListOfJob(ArrayList<Job> jobArrayList){
+        listOfJob = jobArrayList;
+    }
+
+    public void setListOfCargoRequirement(ArrayList<CargoRequirement> cargoRequirementArrayList){
+        listOfCargoRequirement = cargoRequirementArrayList;
+    }
+
+    public void setListOfEmploymentRequirement(ArrayList<EmploymentRequirement> employmentRequirement){
+        listOfEmploymentRequirement = employmentRequirement;
+    }
     /**
      * The Mutator method to set the duration of the mission
      *
@@ -281,24 +293,25 @@ public class Mission {
     public void showMissionInfo(){
         System.out.println("Mission ID: " + missionId);
         System.out.println("1.Mission Name: " + missionName);
-        System.out.println("2.Country Of Origin: " + countryOfOrigin );
-        System.out.println("3.Country Allowed: " + countriesAllowed);
-        System.out.println("4. LaunchDate: " + launchDate.toString());
-        System.out.println("5. location of destination: " + locationOfDestination);
-        System.out.println("6. duration: " + duration);
-        System.out.println("7. details about coordinator: " + detailsAboutCoordinator);
-        System.out.println("8. status of the mission: " + statusOfTheMission);
-        System.out.println("9. The job: " );
+        System.out.println("2.Mission descriotion:" + missionDescription);
+        System.out.println("3.Country Of Origin: " + countryOfOrigin );
+        System.out.println("4.Country Allowed: " + countriesAllowed);
+        System.out.println("5. LaunchDate: " + launchDate.toString());
+        System.out.println("6. location of destination: " + locationOfDestination);
+        System.out.println("7. duration: " + duration);
+        System.out.println("8. details about coordinator: " + detailsAboutCoordinator);
+        System.out.println("9. status of the mission: " + statusOfTheMission);
+        System.out.println("10. The jobs: " );
         for (Job job: listOfJob) {
             System.out.println("Job name: " + job.getJobName());
             System.out.println("Job description: " + job.getJobDescription());
         }
-        System.out.println("10. The cargo requirement");
+        System.out.println("11. The cargo requirements");
         for(CargoRequirement cargoRequirement: listOfCargoRequirement){
             System.out.println("Required: " + cargoRequirement.getCargoRequired());
             System.out.println("quantities: " + cargoRequirement.getCargoQuantitiesRequired());
         }
-        System.out.println("11. The Employment requiremnt");
+        System.out.println("12. The Employment requirments");
         for(EmploymentRequirement employmentRequirement: listOfEmploymentRequirement){
             System.out.println("Title: " + employmentRequirement.getTitles());
             System.out.println("number: " + employmentRequirement.getNumberOfEmployees());
@@ -308,6 +321,33 @@ public class Mission {
     public String stringInfo(){
 
         String info = missionId + "," + missionName + "," + missionDescription +"," + countryOfOrigin + "," + countriesAllowed + "," + launchDate.toString() + "," + locationOfDestination + "," + duration + "," + detailsAboutCoordinator + "," + statusOfTheMission + "," ;
+        String jobName = "", jobDesc = "", cargoRequir = "", cargoQuantities = "", employTitle = "", employDescr = "";
+        for(Job job: listOfJob){
+            jobName += job.getJobName() + ":";
+            jobDesc += job.getJobDescription() + ":";
+
+        }
+
+        for (CargoRequirement cargoRequirement: listOfCargoRequirement){
+            cargoRequir += cargoRequirement.getCargoRequired() + ":";
+            cargoQuantities += cargoRequirement.getCargoQuantitiesRequired() + ":";
+
+        }
+
+        for (EmploymentRequirement employmentRequirement: listOfEmploymentRequirement){
+            employTitle += employmentRequirement.getTitles() + ":";
+            employDescr += employmentRequirement.getNumberOfEmployees() + ":";
+
+        }
+        employTitle = employTitle.substring(0,employTitle.length() -1);
+        employDescr = employDescr.substring(0,employDescr.length() -1);
+        cargoRequir = cargoRequir.substring(0,cargoRequir.length() -1);
+        cargoQuantities = cargoQuantities.substring(0,cargoQuantities.length() -1);
+        jobName = jobName.substring(0,jobName.length() -1);
+        jobDesc = jobDesc.substring(0,jobDesc.length() -1);
+
+        info += jobName + "," + jobDesc + "," + cargoRequir + "," + cargoQuantities + "," + employTitle + "," + employDescr;
+
         return info;
     }
 

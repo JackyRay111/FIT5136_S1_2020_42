@@ -16,6 +16,11 @@ public class Job {
         jobName = "";
     }
 
+    public Job(String jobName, String jobDescription){
+        this.jobDescription = jobDescription;
+        this.jobName = jobName;
+    }
+
     /**
      * The Accessor method to get the name of the job
      *
@@ -51,4 +56,6 @@ public class Job {
     public void setJobDescription(String jobDescription){
         this.jobDescription = jobDescription;
     }
+
+
 }

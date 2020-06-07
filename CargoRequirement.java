@@ -16,6 +16,11 @@ public class CargoRequirement {
         cargoRequired = "";
     }
 
+    public CargoRequirement(String cargoRequired, int cargoQuantitiesRequired){
+        this.cargoQuantitiesRequired = cargoQuantitiesRequired;
+        this.cargoRequired = cargoRequired;
+    }
+
     /**
      * The Accessor method to get the purpose that the cargo are required
      *
