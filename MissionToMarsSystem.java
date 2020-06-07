@@ -16,7 +16,7 @@ import java.util.SortedMap;
 /**
  * The class is the control class of the softwar
  *
- * @author Jiancong Lei
+ * @author Jiancong Lei, Daniel and Geohe
  * @version 29/05/2020
  */
 public class MissionToMarsSystem {
@@ -24,12 +24,13 @@ public class MissionToMarsSystem {
     private ArrayList<SpaceShuttle> listOfSpaceShuttle;
     private ArrayList<Criteria> listOfCriteria;
     private ArrayList<Mission> listOfMission;
+    private String selectedShuttle;
 
 
     static final int USERID = 0;
     static final int USERNAME = 1;
     static final int PASSWORD = 2;
-    private String selectedShuttle;
+
 
     public MissionToMarsSystem (){
         listOfCriteria = new ArrayList<>();
@@ -131,6 +132,8 @@ public class MissionToMarsSystem {
                                     System.out.println('\u000C');
                                     //Boundary boundary = new Boundary();
                                     Scanner console = new Scanner(System.in);
+
+                                    //Shuttle information is read-only.
                                     readListOfShuttle();
                                     boundary.displaySelectSpaceShuttle(listOfSpaceShuttle);
                                     System.out.println("Enter Shuttle ID to Select Shuttle: ");
