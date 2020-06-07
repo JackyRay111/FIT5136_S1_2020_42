@@ -146,9 +146,9 @@ public class FileIo {
         }
 
         catch (FileNotFoundException var6){
-            System.out.println("Unable to find the file: multiples.txt");
+            System.out.println("Unable to find the file: shuttle.txt");
         } catch (IOException var7) {
-            System.out.println("Error encountered reading the file: multiples.txt");
+            System.out.println("Error encountered reading the file: shuttle.txt");
         }
         return content;
     }
