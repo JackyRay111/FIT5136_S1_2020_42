@@ -29,12 +29,14 @@ public class MissionToMarsSystem {
     static final int USERID = 0;
     static final int USERNAME = 1;
     static final int PASSWORD = 2;
+    private String selectedShuttle;
 
     public MissionToMarsSystem (){
         listOfCriteria = new ArrayList<>();
         listOfMission = new ArrayList<>();
         listOfSpaceShuttle = new ArrayList<>();
         listOfUser = new ArrayList<>();
+        selectedShuttle = "";
     }
 
     public ArrayList<Criteria> getListOfCriteria() {
@@ -126,6 +128,32 @@ public class MissionToMarsSystem {
 
                                     break;
                                 case 2: // select shuttle space
+                                    System.out.println('\u000C');
+                                    //Boundary boundary = new Boundary();
+                                    Scanner console = new Scanner(System.in);
+                                    readListOfShuttle();
+                                    boundary.displaySelectSpaceShuttle(listOfSpaceShuttle);
+                                    System.out.println("Enter Shuttle ID to Select Shuttle: ");
+                                    int shuttleChoice = 0;
+                                    try{
+                                        shuttleChoice = console.nextInt();
+                                    }
+                                    catch(Exception e){
+                                        System.out.println("INVALID Input");
+                                    }
+                                    console.nextLine();
+
+                                    for(SpaceShuttle shuttle: listOfSpaceShuttle){
+                                        if(shuttleChoice==shuttle.getShuttleId())
+                                        {
+                                            //console.nextLine();
+                                            boundary.displayShuttleInfo(shuttle);
+                                            selectedShuttle = shuttle.getShuttleName();
+                                            boundary.displayShuttleConfirmed(shuttle);
+                                        }
+
+                                    }
+
                                     break;
                                 case 3: //edit criteria
                                     break;
@@ -505,5 +533,31 @@ public class MissionToMarsSystem {
         }while(!back);
         return back;
     }
+
+    public void readListOfShuttle(){
+
+        ArrayList<String []> spaceShuttle;
+        FileIo fileIo = new FileIo();
+
+        spaceShuttle = fileIo.readShuttleFile();
+        //spaceShuttle = readShuttleFile();
+
+        for (String[] temp: spaceShuttle){
+            SpaceShuttle shuttle = new SpaceShuttle();
+            shuttle.setShuttleName(temp[0]);
+            shuttle.setShuttleOrigin(temp[1]);
+            shuttle.setManufacturingYear(Integer.parseInt(temp[2]));
+            shuttle.setFuelCapacity(Integer.parseInt(temp[3]));
+            shuttle.setPassengerCapacity(Integer.parseInt(temp[4]));
+            shuttle.setCargoCapacity(Integer.parseInt(temp[5]));
+            shuttle.setTravelSpeed(Integer.parseInt(temp[6]));
+            shuttle.setShuttleId(Integer.parseInt(temp[7]));
+
+            listOfSpaceShuttle.add(shuttle);
+        }
+
+
+    }
+
 }
 

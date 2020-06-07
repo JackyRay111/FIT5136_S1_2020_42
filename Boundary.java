@@ -99,8 +99,11 @@ public class Boundary {
 		shuttle.displayShuttleInfo();
 	}
 	public void displayShuttleConfirmed(SpaceShuttle shuttle) {
+		System.out.println("");
+		System.out.println("********************************************************************************");
 		System.out.println("* Done! Shuttle Selected ");
 		System.out.println("* Shuttle ID: " + shuttle.getShuttleId() + "\t\t Shuttle Name: " + shuttle.getShuttleName());
+		System.out.println("********************************************************************************");
 	}
 	public boolean displayCreateCriteria() {
 		return true;

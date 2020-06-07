@@ -128,4 +128,28 @@ public class FileIo {
         }
 
     }
+
+    public ArrayList<String[]> readShuttleFile()
+    {
+        String inputFile = "./shuttle.txt";
+        ArrayList<String []> content = new ArrayList<>();
+        try{
+            FileReader reader = new FileReader(inputFile);
+            Scanner file = new Scanner(reader);
+            String tem;
+            do{
+                tem = file.nextLine().trim();
+                content.add(tem.split(","));
+            }while (file.hasNextLine());
+
+            reader.close();
+        }
+
+        catch (FileNotFoundException var6){
+            System.out.println("Unable to find the file: multiples.txt");
+        } catch (IOException var7) {
+            System.out.println("Error encountered reading the file: multiples.txt");
+        }
+        return content;
+    }
 }
