@@ -306,7 +306,8 @@ public class Mission {
     }
 
     public String stringInfo(){
-        String info = missionId + "," + missionName + "," + missionDescription +"," + countryOfOrigin + "," + countriesAllowed + "," + launchDate.toString() + "," + locationOfDestination + "," + duration + "," + detailsAboutCoordinator + "," + statusOfTheMission + "," + listOfJob.toString() + "," + listOfCargoRequirement.toString() + "," + listOfEmploymentRequirement;
+
+        String info = missionId + "," + missionName + "," + missionDescription +"," + countryOfOrigin + "," + countriesAllowed + "," + launchDate.toString() + "," + locationOfDestination + "," + duration + "," + detailsAboutCoordinator + "," + statusOfTheMission + "," ;
         return info;
     }
 

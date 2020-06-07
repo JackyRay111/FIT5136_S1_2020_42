@@ -265,9 +265,10 @@ public class MissionToMarsSystem {
             mission.setMissionDescription(temp[2]);
             mission.setCountryOfOrigin(temp[3]);
             mission.setCountriesAllowed(temp[4]);
-            mission.setLaunchDate(LocalDate.parse(temp[5], DateTimeFormatter.ofPattern("dd/MM/yyy")));
+            mission.setLaunchDate(LocalDate.parse(temp[5], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             mission.setLocationOfDestination(temp[6]);
             mission.setDuration(Integer.parseInt(temp[7]));
+
             mission.setDetailsAboutCoordinator(temp[8]);
             mission.setStatusOfTheMission(temp[9]);
             // set job
@@ -326,7 +327,7 @@ public class MissionToMarsSystem {
         mission.setCountriesAllowed(validation.acceptNoBlankStringInput());
 
         System.out.println("Please enter the launchDate: ");
-        mission.setLaunchDate(LocalDate.parse(validation.acceptNoBlankStringInput(), DateTimeFormatter.ofPattern("dd/MM/yyy")) );
+        mission.setLaunchDate(LocalDate.parse(validation.acceptNoBlankStringInput(), DateTimeFormatter.ofPattern("yyyy-MM-dd")) );
 
         System.out.println("Please enter the location of the destination: ");
         mission.setLocationOfDestination(validation.acceptNoBlankStringInput());
@@ -399,7 +400,7 @@ public class MissionToMarsSystem {
                 mission.setMissionDescription(temp[2]);
                 mission.setCountryOfOrigin(temp[3]);
                 mission.setCountriesAllowed(temp[4]);
-                mission.setLaunchDate(LocalDate.parse(temp[5], DateTimeFormatter.ofPattern("dd/MM/yyy")));
+                mission.setLaunchDate(LocalDate.parse(temp[5], DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 mission.setLocationOfDestination(temp[6]);
                 mission.setDuration(Integer.parseInt(temp[7]));
                 mission.setDetailsAboutCoordinator(temp[8]);
@@ -476,7 +477,7 @@ public class MissionToMarsSystem {
                         break;
                     case 5:
                         System.out.println("Please enter the launchDate: ");
-                        mission.setLaunchDate(LocalDate.parse(validation.acceptNoBlankStringInput(), DateTimeFormatter.ofPattern("dd/MM/yyy")));
+                        mission.setLaunchDate(LocalDate.parse(validation.acceptNoBlankStringInput(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                         break;
                     case 6:
                         System.out.println("Please enter the location of the destination: ");
