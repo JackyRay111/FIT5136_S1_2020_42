@@ -34,10 +34,33 @@ To run this project:
 
 
 ## Screenshots
+
+* when user enter the wrong password and the user name, the system will 
+give a error.
+![screenshot4](Wrong log in.png)
+* the home page for Administrator the system
+
+![screenshot3](homepage.png)
+
+* log out function for the system
+
+![screenshot5](logOutr.png)
+
+* homepage for coordinator
+
+![screenshot5](homepage for coordinator.png)
+
+
 * Extracted Shuttle List and information displayed.
+
 ![Screenshot](shuttleListScreenshot.png) 
 
 * Shuttle is selected by entering the Shuttle ID.
 * Full information of the selected shuttle is displayed 
 with a confirmation message. 
 ![screenshot2](shuttleConfirmationScreenshot.png)
+
+
+## Trouble shooting 
+The feature 2 and 3 is not fully implemented, so some of the function can not be user right not
+

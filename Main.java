@@ -7,7 +7,8 @@ public class Main {
         MissionToMarsSystem test =  new MissionToMarsSystem();
         Validation validation = new Validation();
         Boundary boundary = new Boundary();
-        boundary.displayLogin();
+        Mission mission = new Mission();
+        test.startMoudle();
     }
 }
 

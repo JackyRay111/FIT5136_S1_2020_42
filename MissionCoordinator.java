@@ -38,26 +38,6 @@ public class MissionCoordinator extends User{
         return moMission;
     }
 
-    public StringBuffer stringInfo(){
-        StringBuffer out = new StringBuffer();
 
-        for(Mission mission: listOfMission){
-            out.append(mission.stringInfo());
-            out.append("\r\n");
-        }
-        return out;
-    }
 
-    public void replaceMission(Mission mission){
-        Iterator<Mission> it = listOfMission.iterator();
-
-        while(it.hasNext()){
-            Mission m = it.next();
-            if(m.getMissionId() == mission.getMissionId()){
-                it.remove();
-                listOfMission.add(mission);
-                break;
-            }
-        }
-    }
 }

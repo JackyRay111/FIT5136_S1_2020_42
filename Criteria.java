@@ -1,6 +1,10 @@
+
+
+import java.util.ArrayList;
+
 public class Criteria {
-	
-	//private int criteriaID; //add a new attribute and mutator and accessor ---Jiancong
+
+    //private int criteriaID; //add a new attribute and mutator and accessor ---Jiancong
 	/*
 // 	add a default constructor  ---Jiancong
 // 	 */
@@ -10,13 +14,13 @@ public class Criteria {
 // 		qualifications = new String[20];
 // 		criteriaID = 0;
 // 	}
-	
-	private int missionId;
+
+    private int missionId;
     private String criminalRecords;
     private String healthRecords;
     private ArrayList<String[]> qualifications;
 
-    public Criteria(){
+    public Criteria() {
 
     }
 
@@ -51,11 +55,11 @@ public class Criteria {
         this.healthRecords = healthRecords;
     }
 
-    public ArrayList<String[]> getQualifications() {
+   /* public ArrayList<String[]> getQualifications() {
         return qualifications;
     }
 
     public void setQualifications(ArrayList<String[]> qualifications) {
         this.qualifications = qualifications;
-    }
-
+    }*/
+}

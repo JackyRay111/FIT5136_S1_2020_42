@@ -1,5 +1,6 @@
 import com.sun.jdi.ArrayReference;
 
+import javax.print.attribute.standard.JobName;
 import javax.sound.midi.Soundbank;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -28,18 +29,19 @@ public class Boundary {
 
 	public void displayHomePageForAdmin(String userName){
 		System.out.println("\f********************************************************************************");
-		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars" + userName);
+		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars " + userName);
 		System.out.println("********************************************************************************");
 		System.out.println("1.Edit exited Mission");
 		System.out.println("2.Select shuttle space to plan the mission");
 		System.out.println("3.Edit exited Criteria");
-		System.out.println("4.Log Out");
+		System.out.println("4. Create criteria");
+		System.out.println("5.Log Out");
 		System.out.println("Please enter your choice:");
 	}
 
 	public void displayHomepageForCoordinator(String userName){
 		System.out.println("\f********************************************************************************");
-		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars" + userName);
+		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars " + userName);
 		System.out.println("********************************************************************************");
 		System.out.println("1.Create Mission");
 		System.out.println("2.Edit exited Mission");
@@ -54,7 +56,7 @@ public class Boundary {
 	}
 	public void displayMissionInfo(Mission mission) {
 		System.out.println("\f********************************************************************************");
-		System.out.println("\t\t\t\t\t\tThe information for Misson:" + mission.getMissionName() + ": " + mission.getMissionId());
+		System.out.println("\t\t\t\t\t\tThe information for Misson: " + mission.getMissionName() + ": " + mission.getMissionId());
 		System.out.println("********************************************************************************");
 		/*System.out.println("Mission ID: " + mission.getMissionId());
 		System.out.println("1.Mission Name: " + mission.getMissionName());
@@ -72,8 +74,12 @@ public class Boundary {
 	}
 
 	public void displayTitleOfMissions(ArrayList<Mission> listOfMission){
+		System.out.println('\f');
+		System.out.println("\f********************************************************************************");
+		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars: select Mission to edit ");
+		System.out.println("********************************************************************************");
 		for(Mission mission: listOfMission){
-			System.out.println("\fThe mission ID: " + mission.getMissionId());
+			System.out.println("The mission ID: " + mission.getMissionId());
 			System.out.println("The mission Name: " + mission.getMissionName());
 			System.out.println("********************************************************************************");
 
@@ -96,15 +102,15 @@ public class Boundary {
 		}
 	}
 	public void displayShuttleInfo(SpaceShuttle shuttle) {
-		shuttle.displayShuttleInfo();
+		//shuttle.displayShuttleInfo();
 	}
-	public void displayShuttleConfirmed(SpaceShuttle shuttle) {
-		System.out.println("");
-		System.out.println("********************************************************************************");
-		System.out.println("* Done! Shuttle Selected ");
-		System.out.println("* Shuttle ID: " + shuttle.getShuttleId() + "\t\t Shuttle Name: " + shuttle.getShuttleName());
-		System.out.println("********************************************************************************");
-	}
+    public void displayShuttleConfirmed(SpaceShuttle shuttle) {
+        System.out.println("");
+        System.out.println("********************************************************************************");
+        System.out.println("* Done! Shuttle Selected ");
+        System.out.println("* Shuttle ID: " + shuttle.getShuttleId() + "\t\t Shuttle Name: " + shuttle.getShuttleName());
+        System.out.println("********************************************************************************");
+    }
 	public boolean displayCreateCriteria() {
 		return true;
 	}
@@ -125,6 +131,42 @@ public class Boundary {
 	}
 	public boolean displayCandidateReplacement() {
 		return true;
+	}
+
+	public int displayJobList(ArrayList<Job> jobList)	{
+		int i = 0;
+		System.out.println("\f********************************************************************************");
+		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars: display job info ");
+		System.out.println("********************************************************************************");
+		for(Job job: jobList){
+			System.out.println(++i + " Job Name: " + job.getJobName());
+			System.out.println("Job description:  " + job.getJobDescription());
+					}
+		return i;
+	}
+
+	public int displayCargoList(ArrayList<CargoRequirement> cargoRequirements)	{
+		int i = 0;
+		System.out.println("\f********************************************************************************");
+		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars: diplay cargo info ");
+		System.out.println("********************************************************************************");
+		for(CargoRequirement cargoRequirement: cargoRequirements){
+			System.out.println(++i + " Cargo required Name: " + cargoRequirement.getCargoRequired());
+			System.out.println("Cargo required quantities:  " + cargoRequirement.getCargoQuantitiesRequired());
+		}
+		return i;
+	}
+
+	public int displayEmployList(ArrayList<EmploymentRequirement> employmentRequirements)	{
+		int i = 0;
+		System.out.println("\f********************************************************************************");
+		System.out.println("\t\t\t\t\t\tWelcome to Mission to Mars: diplay employ info ");
+		System.out.println("********************************************************************************");
+		for(EmploymentRequirement employmentRequirement	: employmentRequirements){
+			System.out.println(++i + " employ title: " + employmentRequirement.getTitles());
+			System.out.println("employ required number:  " + employmentRequirement.getNumberOfEmployees());
+		}
+		return i;
 	}
 
 }

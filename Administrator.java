@@ -72,7 +72,7 @@ public class Administrator extends User{
     /*
         this method is to select The Criteria that is need to be modified
      */
-    public Criteria modifyCriteria(int num){
+    /*public Criteria modifyCriteria(int num){
         Iterator it =  listOfCriteria.iterator();
         Criteria moCriteria = new Criteria();
 
@@ -83,28 +83,8 @@ public class Administrator extends User{
             }
         }
         return moCriteria;
-    }
+    }*/
 
-    public void replaceMission(Mission mission){
-        Iterator<Mission> it = listOfMission.iterator();
 
-        while(it.hasNext()){
-            Mission m = it.next();
-            if(m.getMissionId() == mission.getMissionId()){
-                it.remove();
-                listOfMission.add(mission);
-                break;
-            }
-        }
-    }
 
-    public StringBuffer stringInfo(){
-        StringBuffer out = new StringBuffer();
-
-        for(Mission mission: listOfMission){
-            out.append(mission.stringInfo());
-            out.append("\r\n");
-        }
-        return out;
-    }
 }

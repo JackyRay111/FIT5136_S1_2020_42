@@ -29,9 +29,9 @@ public class FileIo {
         }
 
         catch (FileNotFoundException var6){
-            System.out.println("Unable to find the file: multiples.txt");
+            System.out.println("Unable to find the file: login.txt");
         } catch (IOException var7) {
-            System.out.println("Error encountered reading the file: multiples.txt");
+            System.out.println("Error encountered reading the file: login.txt");
         }
         return content;
     }
@@ -51,18 +51,18 @@ public class FileIo {
         }
 
         catch (FileNotFoundException var6){
-            System.out.println("Unable to find the file: multiples.txt");
+            System.out.println("Unable to find the file: mission.txt");
         } catch (IOException var7) {
-            System.out.println("Error encountered reading the file: multiples.txt");
+            System.out.println("Error encountered reading the file: mission.txt");
         }
         return content;
     }
 
-    public ArrayList<String> readCriteriaFile() throws IOException  
+    public ArrayList<String> readCriteriaFile() throws IOException
     {
         ArrayList<String> option = new ArrayList<String>();
         FileReader inputFile = new FileReader(CRITERIA);
-        try 
+        try
         {
             Scanner parser = new Scanner(inputFile);
             String option1 = parser.nextLine(); // 1
@@ -74,29 +74,29 @@ public class FileIo {
             option.add(option3);
             option.add(option4);
         }
-        finally 
+        finally
         {
             inputFile.close();
         }
         return option;
     }
     
-//     public void writeFile(String adminName) throws IOException 
-//     {
-//         PrintWriter outputFile = new PrintWriter(fileName);
-//         try 
-//         {
-//             outputFile.println(adminName + "");
-//         }
-//         finally 
-//         {
-//             outputFile.close();
-//         }
-//     }
+   /* public void writeFile(String adminName) throws IOException
+    {
+        PrintWriter outputFile = new PrintWriter(fileName);
+        try 
+        {
+            outputFile.println(adminName + "");
+        }
+        finally 
+        {
+            outputFile.close();
+        }
+    }*/
 
     public void appendFile(String contents) {
         try {
-            FileReader reader = new FileReader("outcome.txt");
+            FileReader reader = new FileReader(MISSION);
             Scanner file = new Scanner(reader);
             StringBuffer stringBuffer = new StringBuffer();
 
@@ -106,7 +106,7 @@ public class FileIo {
             }
 
             reader.close();
-            PrintWriter write = new PrintWriter("outcome.txt");
+            PrintWriter write = new PrintWriter(MISSION);
             String var10001 = stringBuffer.toString();
             write.write(var10001 + contents);
             write.close();
@@ -129,30 +129,26 @@ public class FileIo {
         } catch (IOException var7) {
             System.out.println("Error encountered writing or reading to the file: outcome.txt");
         }
-
     }
 
-    public ArrayList<String[]> readShuttleFile()
-    {
-        String inputFile = "./shuttle.txt";
-        ArrayList<String []> content = new ArrayList<>();
-        try{
-            FileReader reader = new FileReader(inputFile);
-            Scanner file = new Scanner(reader);
-            String tem;
-            do{
-                tem = file.nextLine().trim();
-                content.add(tem.split(","));
-            }while (file.hasNextLine());
+        public ArrayList<String[]> readShuttleFile() {
+            String inputFile = "./shuttle.txt";
+            ArrayList<String[]> content = new ArrayList<>();
+            try {
+                FileReader reader = new FileReader(inputFile);
+                Scanner file = new Scanner(reader);
+                String tem;
+                do {
+                    tem = file.nextLine().trim();
+                    content.add(tem.split(","));
+                } while (file.hasNextLine());
 
-            reader.close();
+                reader.close();
+            } catch (FileNotFoundException var6) {
+                System.out.println("Unable to find the file: shuttle.txt");
+            } catch (IOException var7) {
+                System.out.println("Error encountered reading the file: shuttle.txt");
+            }
+            return content;
         }
-
-        catch (FileNotFoundException var6){
-            System.out.println("Unable to find the file: shuttle.txt");
-        } catch (IOException var7) {
-            System.out.println("Error encountered reading the file: shuttle.txt");
-        }
-        return content;
-    }
 }
