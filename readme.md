@@ -38,6 +38,6 @@ To run this project:
 ![Screenshot](shuttleListScreenshot.png) 
 
 * Shuttle is selected by entering the Shuttle ID.
-* Full information of the selected shuttle displayed 
+* Full information of the selected shuttle is displayed 
 with a confirmation message. 
 ![screenshot2](shuttleConfirmationScreenshot.png)
