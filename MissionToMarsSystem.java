@@ -107,7 +107,7 @@ public class MissionToMarsSystem {
                     admin.setListOfMission(listOfMission);
                     do {
                         boundary.displayHomePageForAdmin(userName);
-                        homePageChoice = validation.acceptValidateChoiceInRange(1, 4);
+                        homePageChoice = validation.acceptValidateChoiceInRange(1, 5);
                         if (homePageChoice != 5) {
                             switch (homePageChoice) {
                                 case 1: // edit mission
@@ -185,20 +185,20 @@ public class MissionToMarsSystem {
                                     }
                                     break;
                                 case 2: //edit mission
-                                    int temp;
-                                    boolean backHome = false;
-                                    do{
-                                        temp = chooseTheEditMission(listOfMission);
-                                        if (temp != -1) {
-                                            Mission mission = missionCoordinator.modifyMission(temp);
-                                            if (editMission(mission)) {
-                                                replaceMission(mission);
-                                                fileIo.writeMissions(stringInfo());
-                                                continue;
-                                            }
-                                        } else {
-                                            backHome = true;
-                                        }
+                                            int temp;
+                                            boolean backHome = false;
+                                            do{
+                                                temp = chooseTheEditMission(listOfMission);
+                                                if (temp != -1) {
+                                                    Mission mission = missionCoordinator.modifyMission(temp);
+                                                    if (editMission(mission)) {
+                                                        replaceMission(mission);
+                                                        fileIo.writeMissions(stringInfo());
+                                                        continue;
+                                                    }
+                                                } else {
+                                                    backHome = true;
+                                                }
                                     }while (!backHome);
                                     break;
                                 default:
@@ -625,11 +625,11 @@ public class MissionToMarsSystem {
                 switch (choice) {
                     case 1:
                         System.out.println("Please enter the Mission name: ");
-                        mission.setMissionName(validation.acceptRequiredLengthString(10, 1000));
+                        mission.setMissionName(validation.acceptNoBlankStringInput());
                         break;
                     case 2:
                         System.out.println("Please enter the mission description");
-                        mission.setMissionDescription(validation.acceptNoBlankStringInput());
+                        mission.setMissionDescription(validation.acceptRequiredLengthString(10, 1000));
                         break;
                     case 3:
                         System.out.println("Please enter the country of origin");
