@@ -48,7 +48,7 @@ give a error.
 
 * homepage for coordinator
 
-![screenshot5](homepage for coordinator.png)
+![screenshot6](homepage for coordinator.png)
 
 
 * Extracted Shuttle List and information displayed.
