@@ -34,7 +34,8 @@ public class Boundary {
 		System.out.println("1.Edit exited Mission");
 		System.out.println("2.Select shuttle space to plan the mission");
 		System.out.println("3.Edit exited Criteria");
-		System.out.println("4.Log Out");
+		System.out.println("4. Create criteria");
+		System.out.println("5.Log Out");
 		System.out.println("Please enter your choice:");
 	}
 
@@ -103,10 +104,13 @@ public class Boundary {
 	public void displayShuttleInfo(SpaceShuttle shuttle) {
 		//shuttle.displayShuttleInfo();
 	}
-	public void displayShuttleConfirmed(SpaceShuttle shuttle) {
-		System.out.println("* Done! Shuttle Selected ");
-		System.out.println("* Shuttle ID: " + shuttle.getShuttleId() + "\t\t Shuttle Name: " + shuttle.getShuttleName());
-	}
+    public void displayShuttleConfirmed(SpaceShuttle shuttle) {
+        System.out.println("");
+        System.out.println("********************************************************************************");
+        System.out.println("* Done! Shuttle Selected ");
+        System.out.println("* Shuttle ID: " + shuttle.getShuttleId() + "\t\t Shuttle Name: " + shuttle.getShuttleName());
+        System.out.println("********************************************************************************");
+    }
 	public boolean displayCreateCriteria() {
 		return true;
 	}

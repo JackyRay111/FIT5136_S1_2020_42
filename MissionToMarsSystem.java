@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.lang.System;
+import java.lang.String;
 import java.util.SortedMap;
 
 /**
  * The class is the control class of the softwar
  *
- * @author Jiancong Lei
+ * @author Jiancong Lei, Daniel and Gaoge
  * @version 29/05/2020
  */
 public class MissionToMarsSystem {
@@ -24,7 +25,7 @@ public class MissionToMarsSystem {
     private ArrayList<SpaceShuttle> listOfSpaceShuttle;
     private ArrayList<Criteria> listOfCriteria;
     private ArrayList<Mission> listOfMission;
-
+    private String selectedShuttle;
 
     static final int USERID = 0;
     static final int USERNAME = 1;
@@ -76,11 +77,13 @@ public class MissionToMarsSystem {
         readListOfMission();
         Validation validation = new Validation();
         int loginChoice = 0, homePageChoice = 0;
-        boolean isLogOut = false;
+
         String userName, password;
 
         //start
         do{
+
+            boolean isLogOut = false;
         boundary.displayLogin();
         loginChoice = validation.acceptValidateChoiceInRange(1,2);
         if(loginChoice == 1){
@@ -104,8 +107,8 @@ public class MissionToMarsSystem {
                     admin.setListOfMission(listOfMission);
                     do {
                         boundary.displayHomePageForAdmin(userName);
-                        homePageChoice = validation.acceptValidateChoiceInRange(1, 4);
-                        if (homePageChoice != 4) {
+                        homePageChoice = validation.acceptValidateChoiceInRange(1, 5);
+                        if (homePageChoice != 5) {
                             switch (homePageChoice) {
                                 case 1: // edit mission
                                     int temp;
@@ -123,11 +126,41 @@ public class MissionToMarsSystem {
                                             backHome = true;
                                         }
                                     }while (!backHome);
-
                                     break;
                                 case 2: // select shuttle space
+                                    System.out.println('\u000C');//'\f'
+                                    //Boundary boundary = new Boundary();
+                                    Scanner console = new Scanner(System.in);
+                                    //shuttle information is read-only
+                                    readListOfShuttle();
+
+                                    boundary.displaySelectSpaceShuttle(listOfSpaceShuttle);
+                                    System.out.println("Enter Shuttle ID to Select Shuttle: ");
+                                    int shuttleChoice = 0;
+                                    try{
+                                        shuttleChoice = console.nextInt();
+                                    }
+                                    catch(Exception e){
+                                        System.out.println("INVALID Input");
+                                    }
+                                    console.nextLine();
+
+                                    for(SpaceShuttle shuttle: listOfSpaceShuttle){
+                                        if(shuttleChoice==shuttle.getShuttleId())
+                                        {
+                                            //console.nextLine();
+                                            boundary.displayShuttleInfo(shuttle);
+                                            selectedShuttle = shuttle.getShuttleName();
+                                            boundary.displayShuttleConfirmed(shuttle);
+                                        }
+
+                                    }
+
                                     break;
                                 case 3: //edit criteria
+                                    readCriteria();
+                                    break;
+                                case 4://create criteria
                                     break;
                                 default:
                                     break;
@@ -152,20 +185,20 @@ public class MissionToMarsSystem {
                                     }
                                     break;
                                 case 2: //edit mission
-                                    int temp;
-                                    boolean backHome = false;
-                                    do{
-                                        temp = chooseTheEditMission(listOfMission);
-                                        if (temp != -1) {
-                                            Mission mission = missionCoordinator.modifyMission(temp);
-                                            if (editMission(mission)) {
-                                                replaceMission(mission);
-                                                fileIo.writeMissions(stringInfo());
-                                                continue;
-                                            }
-                                        } else {
-                                            backHome = true;
-                                        }
+                                            int temp;
+                                            boolean backHome = false;
+                                            do{
+                                                temp = chooseTheEditMission(listOfMission);
+                                                if (temp != -1) {
+                                                    Mission mission = missionCoordinator.modifyMission(temp);
+                                                    if (editMission(mission)) {
+                                                        replaceMission(mission);
+                                                        fileIo.writeMissions(stringInfo());
+                                                        continue;
+                                                    }
+                                                } else {
+                                                    backHome = true;
+                                                }
                                     }while (!backHome);
                                     break;
                                 default:
@@ -592,11 +625,11 @@ public class MissionToMarsSystem {
                 switch (choice) {
                     case 1:
                         System.out.println("Please enter the Mission name: ");
-                        mission.setMissionName(validation.acceptRequiredLengthString(10, 1000));
+                        mission.setMissionName(validation.acceptNoBlankStringInput());
                         break;
                     case 2:
                         System.out.println("Please enter the mission description");
-                        mission.setMissionDescription(validation.acceptNoBlankStringInput());
+                        mission.setMissionDescription(validation.acceptRequiredLengthString(10, 1000));
                         break;
                     case 3:
                         System.out.println("Please enter the country of origin");
@@ -733,5 +766,56 @@ public class MissionToMarsSystem {
         }
         return out;
     }
+
+    public void readCriteria()
+    {
+        ArrayList<String> option = new ArrayList<String>();
+        option = readFile();
+        System.out.println("1 : " + option.get(0));
+        System.out.println("2 : " + option.get(1));
+        System.out.println("3 : " + option.get(2));
+        System.out.println("4 : " + option.get(3));
+    }
+
+    private ArrayList<String> readFile()
+    {
+        ArrayList<String> option = new ArrayList<String>();
+        try
+        {
+            FileIo readFile = new FileIo();
+            option = readFile.readCriteriaFile();
+        }
+        catch (Exception e)
+        {
+            System.out.println("It can not find the criteria.txt");
+            System.exit(0);
+        }
+        return option;
+    }
+    public void readListOfShuttle(){
+
+        ArrayList<String []> spaceShuttle;
+        FileIo fileIo = new FileIo();
+
+        spaceShuttle = fileIo.readShuttleFile();
+        //spaceShuttle = readShuttleFile();
+
+        for (String[] temp: spaceShuttle){
+            SpaceShuttle shuttle = new SpaceShuttle();
+            shuttle.setShuttleName(temp[0]);
+            shuttle.setShuttleOrigin(temp[1]);
+            shuttle.setManufacturingYear(Integer.parseInt(temp[2]));
+            shuttle.setFuelCapacity(Integer.parseInt(temp[3]));
+            shuttle.setPassengerCapacity(Integer.parseInt(temp[4]));
+            shuttle.setCargoCapacity(Integer.parseInt(temp[5]));
+            shuttle.setTravelSpeed(Integer.parseInt(temp[6]));
+            shuttle.setShuttleId(Integer.parseInt(temp[7]));
+
+            listOfSpaceShuttle.add(shuttle);
+        }
+
+
+    }
+
 }
 
