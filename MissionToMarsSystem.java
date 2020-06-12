@@ -128,34 +128,86 @@ public class MissionToMarsSystem {
                                     }while (!backHome);
                                     break;
                                 case 2: // select shuttle space
-                                    System.out.println('\u000C');//'\f'
-                                    //Boundary boundary = new Boundary();
-                                    Scanner console = new Scanner(System.in);
-                                    //shuttle information is read-only
-                                    readListOfShuttle();
 
-                                    boundary.displaySelectSpaceShuttle(listOfSpaceShuttle);
-                                    System.out.println("Enter Shuttle ID to Select Shuttle: ");
-                                    int shuttleChoice = 0;
-                                    try{
-                                        shuttleChoice = console.nextInt();
-                                    }
-                                    catch(Exception e){
-                                        System.out.println("INVALID Input");
-                                    }
-                                    console.nextLine();
+                                    int thisMenuSelection = 0;
+                                    while(thisMenuSelection < 3){
+                                        System.out.print('\u000C');//'\f'
+                                        //Boundary boundary = new Boundary();
+                                        Scanner console = new Scanner(System.in);
+                                        //shuttle information is read-only
+                                        readListOfShuttle();
 
-                                    for(SpaceShuttle shuttle: listOfSpaceShuttle){
-                                        if(shuttleChoice==shuttle.getShuttleId())
-                                        {
-                                            //console.nextLine();
-                                            boundary.displayShuttleInfo(shuttle);
-                                            selectedShuttle = shuttle.getShuttleName();
-                                            boundary.displayShuttleConfirmed(shuttle);
+                                        boundary.displaySelectSpaceShuttle(listOfSpaceShuttle);
+                                        System.out.println("Home Page: -1 ");
+                                        System.out.println("Enter Shuttle ID to Select Shuttle: ");
+                                        int shuttleChoice = 0;
+                                        try{
+                                            shuttleChoice = console.nextInt();
+                                        }
+                                        catch(Exception e){
+                                            System.out.println("INVALID Input");
+                                        }
+                                        console.nextLine();
+
+                                        if(shuttleChoice == -1){
+                                            isLogOut  = false;
+                                            break;
                                         }
 
-                                    }
+                                        for(SpaceShuttle shuttle: listOfSpaceShuttle){
+                                            if(shuttleChoice==shuttle.getShuttleId())
+                                            {
+                                                //console.nextLine();
+                                                boundary.displayShuttleInfo(shuttle);
+                                                System.out.println("");
+                                                System.out.println("Cancel: -1");
+                                                System.out.println("Confirm Selection: -2");
+                                                int confirmation = 0;
+                                                try{
+                                                    confirmation = console.nextInt();
+                                                }
+                                                catch(Exception e){
+                                                    System.out.println("INVALID Input");
+                                                }
+                                                console.nextLine();
 
+                                                if(confirmation == -1){
+                                                    thisMenuSelection = 5;
+                                                    isLogOut  = false;
+                                                    break;
+                                                }
+
+                                                if(confirmation == -2){
+                                                    selectedShuttle = shuttle.getShuttleName();
+                                                    boundary.displayShuttleConfirmed(shuttle);
+                                                    thisMenuSelection = 5;
+                                                    isLogOut  = false;
+                                                    break;
+                                                }
+
+                                                if(confirmation != -1 || confirmation != -2){
+                                                    System.out.println("INVALID Input");
+                                                    isLogOut  = false;
+                                                    break;
+                                                }
+                                            }
+                                            /*else
+                                            {
+                                                System.out.println("Shuttle not found");
+                                                System.out.println("");
+                                                break;
+                                            }
+                                            */
+
+                                        }
+
+
+                                        System.out.println("Please Press ENTER to Continue");
+                                        console.nextLine();
+                                        thisMenuSelection += 1;
+                                        isLogOut  = false;
+
+                                    }
                                     break;
                                 case 3: //edit criteria
                                     readCriteria();
